@@ -1,0 +1,36 @@
+title: "Why Every African App Should Be Offline-First"
+excerpt: "Building for Nigeria taught me that internet connectivity is a privilege, not a guarantee. Here's how to design for the real Africa."
+date: "2024-10-20"
+tags: ["Architecture", "Africa", "Offline-First", "Mobile"]
+readTime: "8 min read"
+---
+
+# Why Every African App Should Be Offline-First
+
+Most developers build apps that assume a stable internet connection. In Nigeria, that assumption will break your product.
+
+## The Reality of Connectivity in Nigeria
+
+Average mobile internet speed in Nigeria hovers around 15–20 Mbps — on a good day. In university hostels, markets, and rural areas, you're lucky to get 2G. Power cuts mean recharging hotspots is unpredictable.
+
+Your app needs to work *despite* this, not *because of* ideal conditions.
+
+## What Offline-First Actually Means
+
+Offline-first doesn't mean your app works without internet forever. It means:
+
+1. **Core functionality works without a connection**
+2. **Data syncs intelligently when connectivity returns**
+3. **The user never sees a blank screen or error just because of poor signal**
+
+## Tools I Use
+
+For web apps, IndexedDB with a service worker strategy is powerful. For React Native, SQLite via `expo-sqlite` or `@op-engineering/op-sqlite` handles local persistence beautifully. For sync, a queue-based approach — store actions locally, replay them when online — works reliably.
+
+## B-Chat as a Case Study
+
+B-Chat, my Bluetooth mesh messaging app, takes this further: it eliminates internet dependency entirely. Messages hop between phones via Bluetooth. No towers. No data. Just physics.
+
+## The Bottom Line
+
+If your app dies when connectivity drops, you're building for the wrong Africa. Build for the real one.
