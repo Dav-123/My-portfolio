@@ -2,6 +2,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Award } from "lucide-react";
+import { SiPython } from "react-icons/si";
+
+function SololearnLogo({ size = 48 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="#1AA7C1" />
+      <path d="M32 14L44 22V38L32 46L20 38V22L32 14Z" fill="white" />
+      <path d="M32 18L41 24V36L32 42L23 36V24L32 18Z" fill="#1AA7C1" />
+      <path d="M28 26L32 22L36 26V34L32 38L28 34V26Z" fill="white" />
+      <circle cx="32" cy="30" r="3" fill="#1AA7C1" />
+    </svg>
+  );
+}
 
 const certs = [
   {
@@ -11,24 +24,26 @@ const certs = [
     date: "2025",
     credentialId: "66789js",
     verifyUrl: "#",
-    emoji: "🤖",
+    logoElement: "sololearn" as const,
     gradient: "from-teal-500/20 to-emerald-600/20",
     border: "border-teal-500/30",
     tag: "AI / ML",
     tagColor: "text-teal-400 bg-teal-500/10",
+    iconBg: "bg-teal-500/10",
   },
   {
     id: "python",
     title: "Python Programming Certification",
-    issuer: "Programming Hero",
+    issuer: "Sololearn",
     date: "2025",
     credentialId: "4457if",
     verifyUrl: "#",
-    emoji: "🐍",
+    logoElement: "python" as const,
     gradient: "from-blue-500/20 to-cyan-600/20",
     border: "border-blue-500/30",
     tag: "Python",
     tagColor: "text-blue-400 bg-blue-500/10",
+    iconBg: "bg-blue-500/10",
   },
 ];
 
@@ -67,17 +82,22 @@ export default function Certifications() {
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${cert.gradient} opacity-50 rounded-2xl`} />
 
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="text-3xl sm:text-5xl">{cert.emoji}</div>
-                    <div>
-                      <span className={`inline-flex items-center gap-1 text-xs font-semibold px-3 py-1 rounded-full ${cert.tagColor} mb-2`}>
-                        <Award size={10} />
-                        {cert.tag}
-                      </span>
-                    </div>
+              <div className="relative z-10 text-center">
+                <div className="flex items-center justify-center mb-6">
+                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl ${cert.iconBg} flex items-center justify-center`}>
+                    {cert.logoElement === "python" ? (
+                      <SiPython size={36} className="sm:text-[44px] text-[#3776AB]" />
+                    ) : (
+                      <SololearnLogo size={40} />
+                    )}
                   </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <span className={`inline-flex items-center gap-1 text-xs font-semibold px-3 py-1 rounded-full ${cert.tagColor}`}>
+                    <Award size={10} />
+                    {cert.tag}
+                  </span>
                   <span className="text-stone-500 dark:text-stone-500 text-sm font-medium">
                     {cert.date}
                   </span>

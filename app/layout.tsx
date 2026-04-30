@@ -166,6 +166,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://david-briggs.vercel.app" />
         <meta name="geo.region" content="NG-RI" />
         <meta name="geo.placename" content="Port Harcourt" />
+        <meta name="google-site-verification" content="2CwhtIyL-D38le9StklEvLvLr8AQ1oKe0XxU4s1tMFs" />
       </head>
       <body className="noise font-body">
         <ThemeProvider

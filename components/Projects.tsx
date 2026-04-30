@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useMemo } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, X, Zap, Filter } from "lucide-react";
+import { ExternalLink, Github, X, Zap, Filter, Shield, BookOpen, MessageCircle, Palette, Gamepad2 } from "lucide-react";
 import type { Project } from "@/types";
 
 const projects: Project[] = [
@@ -69,12 +69,12 @@ const statusColors = {
   upcoming: "text-blue-400 bg-blue-500/10 border-blue-500/20",
 };
 
-const projectEmojis: Record<string, string> = {
-  Veriride: "🛡️",
-  docvault: "📚",
-  bchat: "💬",
-  "primetime-comics": "🎭",
-  "game-buddy": "🎮",
+const projectIcons: Record<string, { icon: React.ElementType; color: string; bg: string }> = {
+  Veriride: { icon: Shield, color: "text-red-400", bg: "from-red-900/30 to-stone-900" },
+  docvault: { icon: BookOpen, color: "text-amber-400", bg: "from-amber-900/30 to-stone-900" },
+  bchat: { icon: MessageCircle, color: "text-blue-400", bg: "from-blue-900/30 to-stone-900" },
+  "primetime-comics": { icon: Palette, color: "text-pink-400", bg: "from-pink-900/30 to-stone-900" },
+  "game-buddy": { icon: Gamepad2, color: "text-green-400", bg: "from-green-900/30 to-stone-900" },
 };
 
 export default function Projects() {
@@ -194,7 +194,9 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               className="text-center py-20"
             >
-              <div className="text-5xl mb-4">🔍</div>
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-stone-200 dark:bg-stone-800 flex items-center justify-center">
+                <Filter size={28} className="text-stone-400" />
+              </div>
               <p className="text-stone-400 text-lg">
                 No projects using <span className="text-brand-500">{activeFilter}</span> yet.
               </p>
@@ -213,106 +215,118 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {featuredProject && (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-8 bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-red-500/20 hover:border-red-500/40 transition-all duration-500 cursor-pointer group shadow-sm"
-                  onClick={() => setSelected(featuredProject)}
-                >
-                  <div className="grid md:grid-cols-2 gap-0">
-                    <div className="p-8 sm:p-10 flex flex-col justify-center">
-                      {featuredProject.badge && (
-                        <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 w-fit mb-5">
-                          <Zap size={10} />
-                          {featuredProject.badge}
+              {featuredProject && (() => {
+                const iconData = projectIcons[featuredProject.id];
+                const Icon = iconData?.icon || Shield;
+                return (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-8 bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-red-500/20 hover:border-red-500/40 transition-all duration-500 cursor-pointer group shadow-sm"
+                    onClick={() => setSelected(featuredProject)}
+                  >
+                    <div className="grid md:grid-cols-2 gap-0">
+                      <div className="p-8 sm:p-10 flex flex-col justify-center">
+                        {featuredProject.badge && (
+                          <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 w-fit mb-5">
+                            <Zap size={10} />
+                            {featuredProject.badge}
+                          </span>
+                        )}
+                        <h3 className="font-display text-3xl font-bold text-stone-900 dark:text-white mb-4">
+                          {featuredProject.title}
+                        </h3>
+                        <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-6">
+                          {featuredProject.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {featuredProject.tech.map((t) => (
+                            <button
+                              key={t}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveFilter(t);
+                              }}
+                              className="text-xs px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-brand-500/10 hover:text-brand-500 transition-colors"
+                            >
+                              {t}
+                            </button>
+                          ))}
+                        </div>
+                        <span className={`text-xs font-semibold px-3 py-1 rounded-full border w-fit ${statusColors[featuredProject.status]}`}>
+                          ● {featuredProject.status.charAt(0).toUpperCase() + featuredProject.status.slice(1)}
                         </span>
-                      )}
-                      <h3 className="font-display text-3xl font-bold text-stone-900 dark:text-white mb-4">
-                        {featuredProject.title}
-                      </h3>
-                      <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-6">
-                        {featuredProject.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {featuredProject.tech.map((t) => (
-                          <button
-                            key={t}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setActiveFilter(t);
-                            }}
-                            className="text-xs px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-brand-500/10 hover:text-brand-500 transition-colors"
-                          >
-                            {t}
-                          </button>
-                        ))}
                       </div>
-                      <span className={`text-xs font-semibold px-3 py-1 rounded-full border w-fit ${statusColors[featuredProject.status]}`}>
-                        ● {featuredProject.status.charAt(0).toUpperCase() + featuredProject.status.slice(1)}
-                      </span>
+                      <div className={`h-64 md:h-auto bg-gradient-to-br ${iconData?.bg || "from-stone-800 to-stone-900"} flex items-center justify-center`}>
+                        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                          <Icon size={48} className={`sm:text-[56px] ${iconData?.color || "text-white"}`} strokeWidth={1.5} />
+                        </div>
+                      </div>
                     </div>
-                    <div className="h-64 md:h-auto bg-gradient-to-br from-red-900/30 to-stone-900 flex items-center justify-center text-8xl">
-                      🛡️
-                    </div>
-                  </div>
-                </motion.div>
-              )}
+                  </motion.div>
+                );
+              })()}
 
               {gridProjects.length > 0 && (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <AnimatePresence>
-                    {gridProjects.map((project, i) => (
-                      <motion.div
-                        key={project.id}
-                        layout
-                        initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.4, delay: i * 0.08 }}
-                        whileHover={{ y: -6 }}
-                        className="bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 hover:border-brand-500/30 transition-all duration-300 cursor-pointer group shadow-sm"
-                        onClick={() => setSelected(project)}
-                      >
-                        <div className="h-48 bg-gradient-to-br from-stone-800 to-stone-900 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-500">
-                          {projectEmojis[project.id] || "💻"}
-                        </div>
-                        <div className="p-6">
-                          <div className="flex items-center justify-between mb-3">
-                            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${statusColors[project.status]}`}>
-                              ● {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
-                            </span>
+                    {gridProjects.map((project, i) => {
+                      const iconData = projectIcons[project.id];
+                      const Icon = iconData?.icon || Shield;
+                      return (
+                        <motion.div
+                          key={project.id}
+                          layout
+                          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.9 }}
+                          transition={{ duration: 0.4, delay: i * 0.08 }}
+                          whileHover={{ y: -6 }}
+                          className="bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 hover:border-brand-500/30 transition-all duration-300 cursor-pointer group shadow-sm"
+                          onClick={() => setSelected(project)}
+                        >
+                          <div className={`h-48 bg-gradient-to-br ${iconData?.bg || "from-stone-800 to-stone-900"} flex items-center justify-center`}>
+                            <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                              <Icon size={32} className={iconData?.color || "text-white"} strokeWidth={1.5} />
+                            </div>
                           </div>
-                          <h3 className="font-display text-xl font-bold text-stone-900 dark:text-white mb-2">
-                            {project.title}
-                          </h3>
-                          <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed mb-4">
-                            {project.description}
-                          </p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {project.tech.slice(0, 4).map((t) => (
-                              <button
-                                key={t}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setActiveFilter(t);
-                                }}
-                                className="text-xs px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-brand-500/10 hover:text-brand-500 transition-colors"
-                              >
-                                {t}
-                              </button>
-                            ))}
-                            {project.tech.length > 4 && (
-                              <span className="text-xs px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">
-                                +{project.tech.length - 4}
+                          <div className="p-6">
+                            <div className="flex items-center justify-between mb-3">
+                              <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${statusColors[project.status]}`}>
+                                ● {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
                               </span>
-                            )}
+                            </div>
+                            <h3 className="font-display text-xl font-bold text-stone-900 dark:text-white mb-2">
+                              {project.title}
+                            </h3>
+                            <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed mb-4">
+                              {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {project.tech.slice(0, 4).map((t) => (
+                                <button
+                                  key={t}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setActiveFilter(t);
+                                  }}
+                                  className="text-xs px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-brand-500/10 hover:text-brand-500 transition-colors"
+                                >
+                                  {t}
+                                </button>
+                              ))}
+                              {project.tech.length > 4 && (
+                                <span className="text-xs px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">
+                                  +{project.tech.length - 4}
+                                </span>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      </motion.div>
-                    ))}
+                        </motion.div>
+                      );
+                    })}
                   </AnimatePresence>
                 </div>
               )}
@@ -323,94 +337,103 @@ export default function Projects() {
 
       {/* Project detail modal */}
       <AnimatePresence>
-        {selected && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm"
-            onClick={() => setSelected(null)}
-          >
+        {selected && (() => {
+          const iconData = projectIcons[selected.id];
+          const Icon = iconData?.icon || Shield;
+          return (
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 30 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 30 }}
-              transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="bg-white dark:bg-stone-900 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-stone-200 dark:border-stone-800 p-8"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm"
+              onClick={() => setSelected(null)}
             >
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  {selected.badge && (
-                    <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 mb-3">
-                      {selected.badge}
-                    </span>
-                  )}
-                  <h2 className="font-display text-3xl font-bold text-stone-900 dark:text-white">
-                    {selected.title}
-                  </h2>
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 30 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 30 }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="bg-white dark:bg-stone-900 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-stone-200 dark:border-stone-800 p-8"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${iconData?.bg || "from-stone-800 to-stone-900"} flex items-center justify-center flex-shrink-0`}>
+                      <Icon size={24} className={iconData?.color || "text-white"} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      {selected.badge && (
+                        <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 mb-1">
+                          {selected.badge}
+                        </span>
+                      )}
+                      <h2 className="font-display text-2xl sm:text-3xl font-bold text-stone-900 dark:text-white">
+                        {selected.title}
+                      </h2>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors ml-4 flex-shrink-0"
+                  >
+                    <X size={20} />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setSelected(null)}
-                  className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors ml-4 flex-shrink-0"
-                >
-                  <X size={20} />
-                </button>
-              </div>
 
-              <p className="text-stone-600 dark:text-stone-400 leading-relaxed mb-6">
-                {selected.longDescription}
-              </p>
-
-              <div className="mb-3">
-                <p className="text-stone-400 text-xs uppercase tracking-widest mb-3 font-semibold">
-                  Tech Stack
+                <p className="text-stone-600 dark:text-stone-400 leading-relaxed mb-6">
+                  {selected.longDescription}
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {selected.tech.map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => {
-                        setSelected(null);
-                        setActiveFilter(t);
-                        document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="text-sm px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 hover:bg-brand-500 hover:text-white transition-all"
+
+                <div className="mb-3">
+                  <p className="text-stone-400 text-xs uppercase tracking-widest mb-3 font-semibold">
+                    Tech Stack
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {selected.tech.map((t) => (
+                      <button
+                        key={t}
+                        onClick={() => {
+                          setSelected(null);
+                          setActiveFilter(t);
+                          document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+                        }}
+                        className="text-sm px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 hover:bg-brand-500 hover:text-white transition-all"
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-stone-400 text-xs mt-2">
+                    Click a tag to see other projects using that technology
+                  </p>
+                </div>
+
+                <div className="flex gap-3 mt-6">
+                  {selected.liveUrl && (
+                    <a
+                      href={selected.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary text-sm"
                     >
-                      {t}
-                    </button>
-                  ))}
+                      <ExternalLink size={16} /> Live Demo
+                    </a>
+                  )}
+                  {selected.githubUrl && (
+                    <a
+                      href={selected.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-secondary text-sm"
+                    >
+                      <Github size={16} /> GitHub
+                    </a>
+                  )}
                 </div>
-                <p className="text-stone-400 text-xs mt-2">
-                  Click a tag to see other projects using that technology
-                </p>
-              </div>
-
-              <div className="flex gap-3 mt-6">
-                {selected.liveUrl && (
-                  <a
-                    href={selected.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary text-sm"
-                  >
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
-                )}
-                {selected.githubUrl && (
-                  <a
-                    href={selected.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-secondary text-sm"
-                  >
-                    <Github size={16} /> GitHub
-                  </a>
-                )}
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
+          );
+        })()}
       </AnimatePresence>
     </section>
   );
