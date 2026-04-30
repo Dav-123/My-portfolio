@@ -15,7 +15,7 @@ const projects: Project[] = [
     image: "/projects/veriride.png",
     status: "ongoing",
     featured: true,
-    badge: "🚨 Flagship Social Impact",
+    badge: "Flagship Social Impact",
   },
   {
     id: "docvault",
@@ -31,7 +31,7 @@ const projects: Project[] = [
   {
     id: "bchat",
     title: "B-Chat",
-    description: "Bluetooth mesh messaging app for Android — WhatsApp without internet.",
+    description: "Bluetooth mesh messaging app for Android -- WhatsApp without internet.",
     longDescription:
       "B-Chat is an offline-first Bluetooth mesh messaging Android app built in React Native. Features end-to-end encrypted P2P messaging, status updates, voice notes, file sharing, and an offline TensorFlow Lite AI assistant. Includes a full games module with Chess, Tic-Tac-Toe, and Ludo with tournament infrastructure.",
     tech: ["React Native", "SQLite", "AI/ML", "Node.js"],
@@ -61,7 +61,6 @@ const projects: Project[] = [
   },
 ];
 
-// Build the complete unique tech list from all projects
 const ALL_TECHS = ["All", ...Array.from(new Set(projects.flatMap((p) => p.tech))).sort()];
 
 const statusColors = {
@@ -94,22 +93,22 @@ export default function Projects() {
   const gridProjects = filtered.filter((p) => p.id !== "Veriride");
 
   return (
-    <section className="py-28 px-6 bg-stone-50/50 dark:bg-stone-950/50" ref={ref}>
+    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-stone-50/50 dark:bg-stone-950/50" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          className="text-center mb-16"
         >
           <p className="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">
-            What I've Built
+            What I&apos;ve Built
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-stone-900 dark:text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">
             Featured Projects
           </h2>
           <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto">
-            Real products solving real problems — from Bluetooth mesh networks to government-grade safety platforms.
+            Real products solving real problems -- from Bluetooth mesh networks to government-grade safety platforms.
           </p>
         </motion.div>
 
@@ -118,13 +117,12 @@ export default function Projects() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-10"
+          className="mb-12"
         >
-          {/* Toggle filter visibility on mobile */}
           <div className="flex items-center justify-center gap-3 mb-4 md:hidden">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-medium text-stone-600 dark:text-stone-400"
+              className="inline-flex items-center gap-2 bg-white dark:bg-stone-800 px-4 py-2 rounded-xl text-sm font-medium text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-700"
             >
               <Filter size={14} />
               Filter by tech
@@ -144,7 +142,6 @@ export default function Projects() {
             )}
           </div>
 
-          {/* Desktop: always show. Mobile: toggle */}
           <div className={`flex-wrap gap-2 justify-center ${showFilters ? "flex" : "hidden md:flex"}`}>
             {ALL_TECHS.map((tech) => (
               <motion.button
@@ -155,10 +152,10 @@ export default function Projects() {
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   activeFilter === tech
                     ? "bg-brand-500 text-white shadow-[0_0_15px_rgba(249,115,22,0.3)]"
-                    : "glass text-stone-500 dark:text-stone-400 hover:text-brand-500 hover:border-brand-500/30"
+                    : "bg-white dark:bg-stone-800 text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-700 hover:text-brand-500 hover:border-brand-500/30"
                 }`}
               >
                 {tech}
@@ -166,7 +163,6 @@ export default function Projects() {
             ))}
           </div>
 
-          {/* Result count */}
           <AnimatePresence>
             {activeFilter !== "All" && (
               <motion.p
@@ -189,7 +185,6 @@ export default function Projects() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Empty state */}
         <AnimatePresence mode="wait">
           {filtered.length === 0 ? (
             <motion.div
@@ -218,25 +213,24 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Featured SafeRide card — only show if not filtered out */}
               {featuredProject && (
                 <motion.div
                   layout
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="mb-8 glass rounded-3xl overflow-hidden border border-red-500/20 hover:border-red-500/40 transition-all duration-500 cursor-pointer group"
+                  className="mb-8 bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-red-500/20 hover:border-red-500/40 transition-all duration-500 cursor-pointer group shadow-sm"
                   onClick={() => setSelected(featuredProject)}
                 >
                   <div className="grid md:grid-cols-2 gap-0">
-                    <div className="p-10 flex flex-col justify-center">
+                    <div className="p-8 sm:p-10 flex flex-col justify-center">
                       {featuredProject.badge && (
                         <span className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 w-fit mb-5">
                           <Zap size={10} />
                           {featuredProject.badge}
                         </span>
                       )}
-                      <h3 className="font-display text-3xl font-black text-stone-900 dark:text-white mb-4">
+                      <h3 className="font-display text-3xl font-bold text-stone-900 dark:text-white mb-4">
                         {featuredProject.title}
                       </h3>
                       <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-6">
@@ -267,7 +261,6 @@ export default function Projects() {
                 </motion.div>
               )}
 
-              {/* Grid projects */}
               {gridProjects.length > 0 && (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <AnimatePresence>
@@ -280,7 +273,7 @@ export default function Projects() {
                         exit={{ opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.4, delay: i * 0.08 }}
                         whileHover={{ y: -6 }}
-                        className="glass rounded-3xl overflow-hidden border border-white/10 hover:border-brand-500/30 transition-all duration-300 cursor-pointer group"
+                        className="bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 hover:border-brand-500/30 transition-all duration-300 cursor-pointer group shadow-sm"
                         onClick={() => setSelected(project)}
                       >
                         <div className="h-48 bg-gradient-to-br from-stone-800 to-stone-900 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-500">
@@ -298,7 +291,6 @@ export default function Projects() {
                           <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed mb-4">
                             {project.description}
                           </p>
-                          {/* Tech tags — clickable to filter */}
                           <div className="flex flex-wrap gap-1.5">
                             {project.tech.slice(0, 4).map((t) => (
                               <button
@@ -344,7 +336,7 @@ export default function Projects() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 30 }}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="glass rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-white/10 p-8"
+              className="bg-white dark:bg-stone-900 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-stone-200 dark:border-stone-800 p-8"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-start justify-between mb-6">
@@ -354,13 +346,13 @@ export default function Projects() {
                       {selected.badge}
                     </span>
                   )}
-                  <h2 className="font-display text-3xl font-black text-stone-900 dark:text-white">
+                  <h2 className="font-display text-3xl font-bold text-stone-900 dark:text-white">
                     {selected.title}
                   </h2>
                 </div>
                 <button
                   onClick={() => setSelected(null)}
-                  className="p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors ml-4 flex-shrink-0"
+                  className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors ml-4 flex-shrink-0"
                 >
                   <X size={20} />
                 </button>
@@ -400,7 +392,7 @@ export default function Projects() {
                     href={selected.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-full font-semibold text-sm transition-all hover:scale-105"
+                    className="btn-primary text-sm"
                   >
                     <ExternalLink size={16} /> Live Demo
                   </a>
@@ -410,7 +402,7 @@ export default function Projects() {
                     href={selected.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 glass border border-white/20 hover:border-brand-500/40 text-stone-700 dark:text-stone-300 px-6 py-3 rounded-full font-semibold text-sm transition-all"
+                    className="btn-secondary text-sm"
                   >
                     <Github size={16} /> GitHub
                   </a>

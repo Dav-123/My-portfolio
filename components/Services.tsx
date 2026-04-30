@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import PaystackConsultation from "@/components/PaystackConsultation";
 import { Globe, Smartphone, Server, Bot, Shield, Palette } from "lucide-react";
@@ -9,7 +8,7 @@ const services = [
   {
     icon: Globe,
     title: "Web Applications",
-    desc: "Full-stack Next.js or React apps — from landing pages to complex SaaS platforms. SEO-optimized, fast, accessible.",
+    desc: "Full-stack Next.js or React apps -- from landing pages to complex SaaS platforms. SEO-optimized, fast, accessible.",
     price: "Let's talk",
   },
   {
@@ -21,7 +20,7 @@ const services = [
   {
     icon: Bot,
     title: "AI-Powered Products",
-    desc: "Integrate AI/ML into your product — chatbots, recommendation engines, document intelligence, and more.",
+    desc: "Integrate AI/ML into your product -- chatbots, recommendation engines, document intelligence, and more.",
     price: "Let's talk",
   },
   {
@@ -33,7 +32,7 @@ const services = [
   {
     icon: Shield,
     title: "Social Impact Tech",
-    desc: "Specialized in building technology for African social challenges — safety, education, health, connectivity.",
+    desc: "Specialized in building technology for African social challenges -- safety, education, health, connectivity.",
     price: "Let's talk",
   },
   {
@@ -53,18 +52,18 @@ export default function Services() {
   };
 
   return (
-    <section className="py-28 px-6" ref={ref}>
+    <section className="py-24 sm:py-32 px-4 sm:px-6" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 sm:mb-20"
         >
           <p className="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">
             What I Offer
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-stone-900 dark:text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">
             Services
           </h2>
           <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto">
@@ -72,7 +71,7 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -82,10 +81,10 @@ export default function Services() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="glass rounded-3xl p-7 hover:border-brand-500/30 transition-all duration-300 group cursor-pointer"
+                className="bg-white dark:bg-stone-900 rounded-2xl p-7 border border-stone-200 dark:border-stone-800 hover:border-brand-500/30 transition-all duration-300 group cursor-pointer shadow-sm card-lift"
                 onClick={scrollToContact}
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5 group-hover:bg-brand-500/20 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5 group-hover:bg-brand-500/20 transition-colors duration-300">
                   <Icon size={22} className="text-brand-500" />
                 </div>
                 <h3 className="font-display text-xl font-bold text-stone-900 dark:text-white mb-2">
@@ -100,24 +99,24 @@ export default function Services() {
           })}
         </div>
 
-       <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={inView ? { opacity: 1, y: 0 } : {}}
-  transition={{ duration: 0.6, delay: 0.5 }}
->
-  <div className="text-center mb-12">
-    <p className="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">
-      Book a Session
-    </p>
-    <h3 className="font-display text-3xl font-black text-stone-900 dark:text-white mb-4">
-      Consultation Packages
-    </h3>
-    <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto mb-10">
-      Not ready for a full project? Book a focused consultation session and get expert guidance on your idea, architecture, or product.
-    </p>
-  </div>
-  <PaystackConsultation />
-</motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <div className="text-center mb-12">
+            <p className="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">
+              Book a Session
+            </p>
+            <h3 className="font-display text-3xl font-bold text-stone-900 dark:text-white mb-4">
+              Consultation Packages
+            </h3>
+            <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto mb-10">
+              Not ready for a full project? Book a focused consultation session and get expert guidance on your idea, architecture, or product.
+            </p>
+          </div>
+          <PaystackConsultation />
+        </motion.div>
       </div>
     </section>
   );

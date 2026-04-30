@@ -19,17 +19,17 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 px-4 sm:px-6 py-12 sm:py-16">
+    <footer className="border-t border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-950 px-4 sm:px-6 py-16 sm:py-20">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 sm:gap-12 mb-12 sm:mb-16">
           <div>
-            <div className="font-display text-xl sm:text-2xl font-black mb-3">
+            <div className="font-display text-xl sm:text-2xl font-bold mb-4">
               <span className="gradient-text">David Briggs</span>
             </div>
             <p className="text-stone-500 dark:text-stone-500 text-sm leading-relaxed max-w-xs">
               Building digital solutions that simplify complexity. From Abonnema, Rivers State, Nigeria -- to the world.
             </p>
-            <blockquote className="mt-4 border-l-2 border-brand-500 pl-4 text-stone-400 text-xs italic">
+            <blockquote className="mt-5 border-l-2 border-brand-500 pl-4 text-stone-400 text-xs italic">
               &quot;The simplicity of something is in the complexity of another.&quot;
             </blockquote>
           </div>
@@ -43,7 +43,7 @@ export default function Footer() {
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href)}
-                  className="text-left text-stone-500 dark:text-stone-500 hover:text-brand-500 text-sm transition-colors py-0.5"
+                  className="text-left text-stone-500 dark:text-stone-500 hover:text-brand-500 text-sm transition-colors py-1"
                 >
                   {link.label}
                 </button>
@@ -68,7 +68,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-brand-500/10 hover:text-brand-500 transition-all hover:scale-110"
+                  className="w-10 h-10 rounded-xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center hover:bg-brand-500/10 hover:text-brand-500 transition-all duration-300 hover:scale-110"
                 >
                   <Icon size={18} />
                 </a>
@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-stone-200 dark:border-stone-800 pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-stone-200 dark:border-stone-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-stone-400 dark:text-stone-600 text-xs sm:text-sm">
             &copy; {new Date().getFullYear()} David Briggs. All rights reserved.
           </p>
@@ -93,7 +93,7 @@ export default function Footer() {
             </p>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="p-2 rounded-full glass hover:bg-brand-500/10 hover:text-brand-500 transition-all"
+              className="p-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-brand-500/10 hover:text-brand-500 transition-all duration-300 hover:scale-110"
               aria-label="Back to top"
             >
               <ArrowUp size={16} />

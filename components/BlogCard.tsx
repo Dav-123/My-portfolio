@@ -20,25 +20,25 @@ export default function BlogCard({ post, index, inView }: BlogCardProps) {
       className="group"
     >
       <Link href={`/blog/${post.slug}`}>
-        <div className="glass-card p-5 sm:p-7 h-full !border !border-white/10 hover:!border-brand-500/30 cursor-pointer">
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5">
+        <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-7 h-full border border-stone-200 dark:border-stone-800 hover:border-brand-500/30 cursor-pointer transition-all duration-300 shadow-sm card-lift">
+          <div className="flex flex-wrap gap-2 mb-5">
             {post.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 font-medium">
+              <span key={tag} className="text-xs px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 font-medium">
                 {tag}
               </span>
             ))}
           </div>
 
-          <h3 className="font-display text-base sm:text-xl font-bold text-stone-900 dark:text-white mb-2 sm:mb-3 group-hover:text-brand-500 transition-colors leading-tight">
+          <h3 className="font-display text-base sm:text-xl font-bold text-stone-900 dark:text-white mb-3 group-hover:text-brand-500 transition-colors leading-tight">
             {post.title}
           </h3>
 
-          <p className="text-stone-500 dark:text-stone-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-3">
+          <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed mb-6 line-clamp-3">
             {post.excerpt}
           </p>
 
           <div className="flex items-center justify-between mt-auto">
-            <div className="flex items-center gap-3 sm:gap-4 text-stone-400 text-[10px] sm:text-xs">
+            <div className="flex items-center gap-4 text-stone-400 text-xs">
               <span className="flex items-center gap-1">
                 <Calendar size={11} />
                 {new Date(post.date).toLocaleDateString("en-NG", { day: "numeric", month: "short", year: "numeric" })}
@@ -48,7 +48,7 @@ export default function BlogCard({ post, index, inView }: BlogCardProps) {
                 {post.readTime}
               </span>
             </div>
-            <span className="text-brand-500 text-xs sm:text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+            <span className="text-brand-500 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
               Read <ArrowRight size={12} />
             </span>
           </div>

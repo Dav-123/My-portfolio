@@ -12,17 +12,17 @@ const slides = [
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-          className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-4xl sm:text-6xl shadow-2xl animate-glow"
+          className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-4xl sm:text-6xl shadow-2xl animate-glow"
         >
           💻
         </motion.div>
-        <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-black text-white mb-3 sm:mb-4">
+        <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4">
           David Briggs
         </h1>
         <p className="text-brand-400 text-base sm:text-xl md:text-2xl font-light tracking-wide">
           Software Developer · Builder · Problem Solver
         </p>
-        <p className="text-stone-400 mt-3 sm:mt-4 text-sm sm:text-lg">
+        <p className="text-stone-400 mt-4 text-sm sm:text-lg">
           From Abonnema to the World
         </p>
       </div>
@@ -33,8 +33,8 @@ const slides = [
     label: "Philosophy",
     content: (
       <div className="text-center max-w-lg sm:max-w-2xl mx-auto">
-        <div className="text-4xl sm:text-6xl mb-6 sm:mb-8">✨</div>
-        <blockquote className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-4 sm:mb-6">
+        <div className="text-4xl sm:text-6xl mb-8">✨</div>
+        <blockquote className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
           &quot;The simplicity of something is in the complexity of another.&quot;
         </blockquote>
         <p className="text-stone-400 text-sm sm:text-lg">
@@ -48,8 +48,8 @@ const slides = [
     label: "Origin",
     content: (
       <div className="text-center max-w-sm sm:max-w-xl mx-auto">
-        <div className="text-4xl sm:text-6xl mb-6 sm:mb-8">🌊</div>
-        <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+        <div className="text-4xl sm:text-6xl mb-8">🌊</div>
+        <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
           A boy from the Niger Delta
         </h2>
         <p className="text-stone-300 text-sm sm:text-lg leading-relaxed">
@@ -66,11 +66,11 @@ const slides = [
     label: "Explore",
     content: (
       <div className="text-center">
-        <div className="text-4xl sm:text-6xl mb-6 sm:mb-8">🚀</div>
-        <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+        <div className="text-4xl sm:text-6xl mb-8">🚀</div>
+        <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
           Ready to explore?
         </h2>
-        <p className="text-stone-400 text-sm sm:text-lg mb-6 sm:mb-10">
+        <p className="text-stone-400 text-sm sm:text-lg mb-10">
           Dive into projects, skills, and stories built with purpose.
         </p>
       </div>
@@ -134,11 +134,11 @@ export default function Onboarding() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="flex justify-center mt-6 sm:mt-8"
+                    className="flex justify-center mt-8"
                   >
                     <button
                       onClick={finish}
-                      className="group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(249,115,22,0.5)]"
+                      className="btn-primary text-base sm:text-lg px-8 sm:px-10 py-3.5 sm:py-4 hover:shadow-[0_0_40px_rgba(249,115,22,0.5)]"
                     >
                       Explore My Work →
                     </button>
@@ -148,7 +148,7 @@ export default function Onboarding() {
             </AnimatePresence>
           </div>
 
-          <div className="relative z-10 flex items-center gap-4 sm:gap-6 mt-8 sm:mt-12">
+          <div className="relative z-10 flex items-center gap-4 sm:gap-6 mt-10 sm:mt-14">
             <div className="flex gap-2">
               {slides.map((s, i) => (
                 <button
@@ -156,7 +156,7 @@ export default function Onboarding() {
                   onClick={() => setCurrent(i)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     i === current
-                      ? "w-6 sm:w-8 bg-brand-500"
+                      ? "w-8 bg-brand-500"
                       : "w-2 bg-stone-600 hover:bg-stone-400"
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
@@ -176,7 +176,7 @@ export default function Onboarding() {
 
           <button
             onClick={finish}
-            className="absolute top-4 sm:top-6 right-4 sm:right-8 text-stone-500 hover:text-stone-300 transition-colors text-xs sm:text-sm"
+            className="absolute top-6 right-6 sm:right-8 text-stone-500 hover:text-stone-300 transition-colors text-xs sm:text-sm"
           >
             Skip intro
           </button>

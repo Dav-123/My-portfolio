@@ -7,7 +7,7 @@ import type { Post } from "@/lib/mdx";
 
 const mdxComponents = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1 {...props} className="font-display text-2xl sm:text-4xl font-black text-stone-900 dark:text-white mt-8 sm:mt-12 mb-4 sm:mb-6 leading-tight" />
+    <h1 {...props} className="font-display text-2xl sm:text-4xl font-bold text-stone-900 dark:text-white mt-10 sm:mt-12 mb-4 sm:mb-6 leading-tight" />
   ),
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2 {...props} className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mt-8 sm:mt-10 mb-3 sm:mb-4 border-l-4 border-brand-500 pl-3 sm:pl-4" />
@@ -46,29 +46,29 @@ const mdxComponents = {
 
 export default function BlogPostClient({ post }: { post: Post }) {
   return (
-    <main className="min-h-screen bg-surface-light dark:bg-surface-dark px-4 sm:px-6 py-20 sm:py-28">
+    <main className="min-h-screen bg-surface-light dark:bg-surface-dark px-4 sm:px-6 py-24 sm:py-32">
       <div className="fixed top-0 right-0 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] rounded-full bg-brand-500/6 blur-[100px] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10">
-        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-6 sm:mb-10">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-stone-500 hover:text-brand-500 transition-colors text-xs sm:text-sm font-medium">
+        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-stone-500 hover:text-brand-500 transition-colors text-sm font-medium">
             <ArrowLeft size={16} /> All Posts
           </Link>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="flex flex-wrap gap-2 mb-6">
           {post.tags.map((tag) => (
-            <span key={tag} className="text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 font-medium">{tag}</span>
+            <span key={tag} className="text-xs px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 font-medium">{tag}</span>
           ))}
         </motion.div>
 
         <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-          className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-stone-900 dark:text-white leading-tight mb-4 sm:mb-6">
+          className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white leading-tight mb-6">
           {post.title}
         </motion.h1>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
-          className="flex flex-wrap items-center gap-3 sm:gap-5 text-stone-400 text-xs sm:text-sm mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-stone-200 dark:border-stone-800">
+          className="flex flex-wrap items-center gap-5 text-stone-400 text-sm mb-10 pb-10 border-b border-stone-200 dark:border-stone-800">
           <span className="flex items-center gap-1.5"><Calendar size={14} />{new Date(post.date).toLocaleDateString("en-NG", { day: "numeric", month: "long", year: "numeric" })}</span>
           <span className="flex items-center gap-1.5"><Clock size={14} />{post.readTime}</span>
           <span className="flex items-center gap-1.5">David Briggs</span>
@@ -79,10 +79,10 @@ export default function BlogPostClient({ post }: { post: Post }) {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-          className="mt-10 sm:mt-16 glass-card p-6 sm:p-8 text-center !border-brand-500/20">
-          <p className="text-stone-500 dark:text-stone-400 mb-1.5 sm:mb-2 text-xs sm:text-sm">Enjoyed this?</p>
-          <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-3 sm:mb-4">Let&apos;s build something together.</h3>
-          <Link href="/#contact" className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm transition-all hover:scale-105">
+          className="mt-16 bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-8 text-center border border-brand-500/20 shadow-sm">
+          <p className="text-stone-500 dark:text-stone-400 mb-2 text-sm">Enjoyed this?</p>
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-4">Let&apos;s build something together.</h3>
+          <Link href="/#contact" className="btn-primary text-sm">
             Get In Touch →
           </Link>
         </motion.div>

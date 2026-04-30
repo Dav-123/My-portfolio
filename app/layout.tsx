@@ -1,8 +1,27 @@
 import type { Metadata } from "next";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import AnimatedFavicon from "@/components/AnimatedFavicon";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://david-briggs.vercel.app"),
@@ -134,7 +153,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -148,7 +167,7 @@ export default function RootLayout({
         <meta name="geo.region" content="NG-RI" />
         <meta name="geo.placename" content="Port Harcourt" />
       </head>
-      <body className="noise">
+      <body className="noise font-body">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -164,6 +183,8 @@ export default function RootLayout({
                 background: "#1c1917",
                 color: "#fafaf9",
                 border: "1px solid rgba(249,115,22,0.3)",
+                borderRadius: "1rem",
+                fontFamily: "var(--font-body)",
               },
             }}
           />
