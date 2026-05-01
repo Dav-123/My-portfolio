@@ -1,4 +1,3 @@
-import Onboarding from "@/components/Onboarding";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -21,7 +20,6 @@ export default function Home() {
         <div className="absolute bottom-0 right-1/3 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] rounded-full bg-brand-600/10 blur-[80px]" />
       </div>
 
-      <Onboarding />
       <Navbar />
 
       <div id="home">

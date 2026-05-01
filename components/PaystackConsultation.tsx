@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, CheckCircle, Loader2, AlertCircle } from "lucide-react";
 import toast from "react-hot-toast";
@@ -43,6 +43,12 @@ export default function PaystackConsultation() {
   const [bookingResult, setBookingResult] = useState<BookingResult | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<"name" | "email", string>>>({});
+
+  useEffect(() => {
+    if (!errorMsg) return;
+    const timer = setTimeout(() => { setErrorMsg(""); setStep("select"); }, 10000);
+    return () => clearTimeout(timer);
+  }, [errorMsg, step]);
 
   useEffect(() => {
     if (document.getElementById("paystack-script")) { setScriptLoaded(true); return; }

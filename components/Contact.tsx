@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,6 +34,12 @@ export default function Contact() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>({
     resolver: zodResolver(ContactSchema),
   });
+
+  useEffect(() => {
+    if (!globalError) return;
+    const timer = setTimeout(() => setGlobalError(""), 6000);
+    return () => clearTimeout(timer);
+  }, [globalError]);
 
   const onSubmit = async (data: ContactFormData) => {
     setSubmitting(true);

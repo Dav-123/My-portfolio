@@ -50,6 +50,12 @@ export default function Reviews() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
+  useEffect(() => {
+    if (!submitError) return;
+    const timer = setTimeout(() => setSubmitError(""), 6000);
+    return () => clearTimeout(timer);
+  }, [submitError]);
+
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm<ReviewForm>({
     resolver: zodResolver(ReviewSchema),
   });
