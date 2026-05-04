@@ -1,39 +1,36 @@
 @import "tailwindcss";
 
+/* Theme Configuration - DocVault Blue Pattern */
 @theme {
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Semantic color tokens (DocVault pattern, orange brand) */
-  --color-border: 24 9.8% 90%;
-  --color-input: 24 9.8% 90%;
-  --color-ring: 24 94% 53%;
+  /* Colors - DocVault blue primary */
+  --color-border: 214.3 31.8% 91.4%;
+  --color-input: 214.3 31.8% 91.4%;
+  --color-ring: 221.2 83.2% 53.3%;
   --color-background: 0 0% 100%;
-  --color-foreground: 20 14.3% 4.1%;
-
-  --color-primary: 24 94% 53%;
-  --color-primary-foreground: 0 0% 100%;
-
-  --color-secondary: 30 10% 96%;
-  --color-secondary-foreground: 20 14.3% 4.1%;
-
-  --color-muted: 30 10% 96%;
-  --color-muted-foreground: 25 5% 45%;
-
-  --color-accent: 30 10% 96%;
-  --color-accent-foreground: 20 14.3% 4.1%;
-
-  --color-card: 0 0% 100%;
-  --color-card-foreground: 20 14.3% 4.1%;
-
+  --color-foreground: 222.2 84% 4.9%;
+  
+  --color-primary: 221.2 83.2% 53.3%;
+  --color-primary-foreground: 210 40% 98%;
+  
+  --color-secondary: 210 40% 96.1%;
+  --color-secondary-foreground: 222.2 47.4% 11.2%;
+  
+  --color-destructive: 0 84.2% 60.2%;
+  --color-destructive-foreground: 210 40% 98%;
+  
+  --color-muted: 210 40% 96.1%;
+  --color-muted-foreground: 215.4 16.3% 46.9%;
+  
+  --color-accent: 210 40% 96.1%;
+  --color-accent-foreground: 222.2 47.4% 11.2%;
+  
   --color-popover: 0 0% 100%;
-  --color-popover-foreground: 20 14.3% 4.1%;
+  --color-popover-foreground: 222.2 84% 4.9%;
+  
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 222.2 84% 4.9%;
 
-  --color-destructive: 0 84% 60%;
-  --color-destructive-foreground: 0 0% 100%;
-
-  /* Brand ramp */
+  /* Brand ramp - orange brand */
   --color-brand-50: #fff7ed;
   --color-brand-100: #ffedd5;
   --color-brand-200: #fed7aa;
@@ -45,55 +42,61 @@
   --color-brand-800: #9a3412;
   --color-brand-900: #7c2d12;
 
+  /* Surface colors */
   --color-surface-light: #fafaf9;
   --color-surface-dark: #0c0a09;
 
+  /* Status colors */
   --color-success-500: #22c55e;
   --color-warning-500: #eab308;
   --color-error-500: #ef4444;
 
-  /* Border Radius */
-  --radius: 0.75rem;
-  --radius-lg: 0.75rem;
-  --radius-md: calc(0.75rem - 2px);
-  --radius-sm: calc(0.75rem - 4px);
+  /* Border Radius - DocVault pattern */
+  --radius: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
 
   /* Animations */
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-glow: glow 2s ease-in-out infinite alternate;
-  --animate-slide-up: slideUp 0.6s ease-out;
-  --animate-fade-in: fadeIn 0.5s ease-out;
-  --animate-fade-in-down: fadeInDown 0.5s ease-out;
-  --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
-  --animate-shimmer: shimmer 2s linear infinite;
-  --animate-bounce-subtle: bounceSub 2s ease-in-out infinite;
-  --animate-gradient-x: gradientX 3s ease infinite;
-  --animate-typewriter: typewriter 0.05s steps(1) infinite;
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-fade-in-down: fade-in-down 0.5s ease-out;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Dark Mode Theme */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Dark Mode Theme - DocVault blue pattern */
 .dark {
-  --color-background: 20 14.3% 4.1%;
-  --color-foreground: 30 10% 98%;
-  --color-card: 20 14.3% 4.1%;
-  --color-card-foreground: 30 10% 98%;
-  --color-popover: 20 14.3% 4.1%;
-  --color-popover-foreground: 30 10% 98%;
-  --color-primary: 24 94% 53%;
-  --color-primary-foreground: 0 0% 100%;
-  --color-secondary: 24 10% 14%;
-  --color-secondary-foreground: 30 10% 98%;
-  --color-muted: 24 10% 14%;
-  --color-muted-foreground: 25 5% 55%;
-  --color-accent: 24 10% 14%;
-  --color-accent-foreground: 30 10% 98%;
-  --color-destructive: 0 62% 30%;
-  --color-destructive-foreground: 30 10% 98%;
-  --color-border: 24 10% 14%;
-  --color-input: 24 10% 14%;
-  --color-ring: 24 94% 53%;
+  --color-background: 222.2 84% 4.9%;
+  --color-foreground: 210 40% 98%;
+  --color-card: 222.2 84% 4.9%;
+  --color-card-foreground: 210 40% 98%;
+  --color-popover: 222.2 84% 4.9%;
+  --color-popover-foreground: 210 40% 98%;
+  --color-primary: 217.2 91.2% 59.8%;
+  --color-primary-foreground: 222.2 47.4% 11.2%;
+  --color-secondary: 217.2 32.6% 17.5%;
+  --color-secondary-foreground: 210 40% 98%;
+  --color-muted: 217.2 32.6% 17.5%;
+  --color-muted-foreground: 215 20.2% 65.1%;
+  --color-accent: 217.2 32.6% 17.5%;
+  --color-accent-foreground: 210 40% 98%;
+  --color-destructive: 0 62.8% 30.6%;
+  --color-destructive-foreground: 210 40% 98%;
+  --color-border: 217.2 32.6% 17.5%;
+  --color-input: 217.2 32.6% 17.5%;
+  --color-ring: 224.3 76.3% 48%;
 }
 
 /* Keyframe Animations */

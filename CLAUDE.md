@@ -45,7 +45,7 @@ components/
   BlogPreviewClient.tsx # Blog preview (client component)
   BlogCard.tsx          # Blog post card
   Reviews.tsx           # Testimonials + submission form
-  Sponsorship.tsx       # VeriRide sponsorship section
+  Sponsorship.tsx       # Vora sponsorship section
   PaystackConsultation.tsx # Consultation booking + Paystack payment
   Contact.tsx           # Contact form (react-hook-form + zod)
   Navbar.tsx            # Sticky nav with theme toggle
@@ -54,7 +54,7 @@ components/
   AnimatedFavicon.tsx   # Dynamic SVG favicon (theme-aware)
 
 content/blog/
-  building-veriride-nigeria.mdx  # VeriRide blog post
+  building-vora.mdx   # Vora blog post
   offline-first-apps-africa.mdx # Offline-first architecture post
 
 lib/
@@ -80,8 +80,7 @@ He builds full-stack applications, mobile apps, AI-powered platforms, and social
 - Community-Driven: transport safety apps, Bluetooth mesh networks, tech for the people
 
 ### Key Projects
-- **VeriRide Nigeria**: Passenger safety platform to verify commercial vehicles via QR codes. React Native passenger app, Next.js driver/government portals. Offline-first architecture.
-- **SafeRide Nigeria**: Transport safety initiative
+- **Vora**: AI-powered transport safety platform to verify commercial vehicles via QR codes. React Native passenger app, Next.js driver/government portals. Offline-first architecture.
 - **B-Chat**: Bluetooth mesh messaging app (no internet required)
 - **DocVault**: Document management platform
 - **Game-Buddy-Matcher**: Gaming companion finder
@@ -101,8 +100,8 @@ He builds full-stack applications, mobile apps, AI-powered platforms, and social
 
 ## Blog Posts
 
-### Why I Am Building VeriRide Nigeria (2026-04-28)
-A real incident in Port Harcourt showed that technology could save lives. One-chance vehicles rob and kidnap passengers. VeriRide gives every commercial vehicle a verifiable digital identity. Passengers scan a QR code before boarding to verify the vehicle and driver. Built with React Native (passenger app), Next.js (driver/government portals), offline-first architecture, compressed QR payloads, and aggressive caching for 2G connections. Currently in talks with Rivers State government for a pilot program.
+### Why I Am Building Vora (2026-04-28)
+A real incident in Port Harcourt showed that technology could save lives. One-chance vehicles rob and kidnap passengers. Vora gives every commercial vehicle a verifiable digital identity. Passengers scan a QR code before boarding to verify the vehicle and driver. Built with React Native (passenger app), Next.js (driver/government portals), offline-first architecture, compressed QR payloads, and aggressive caching for 2G connections. Currently in talks with Rivers State government for a pilot program.
 
 ### Why Every African App Should Be Offline-First (2024-10-20)
 Most developers assume stable internet. In Nigeria, average mobile speed is 15-20 Mbps on a good day; rural areas get 2G. Offline-first means core functionality works without connection, data syncs when connectivity returns, and users never see a blank screen from poor signal. Tools: IndexedDB + service workers for web, expo-sqlite for React Native, queue-based sync. B-Chat case study: Bluetooth mesh messaging eliminates internet dependency entirely.
