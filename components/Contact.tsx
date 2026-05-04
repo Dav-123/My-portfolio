@@ -72,20 +72,20 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-stone-50/50 dark:bg-stone-950/50" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 bg-secondary/30" ref={sectionRef}>
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16 sm:mb-20"
         >
-          <p className="text-brand-500 font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
             Start a Conversation
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Hire Me / Get In Touch
           </h2>
-          <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto text-sm sm:text-base">
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base">
             Have a project in mind? Want to collaborate? David typically responds within 24-48 hours.
           </p>
         </motion.div>
@@ -97,17 +97,17 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2 space-y-5"
           >
-            <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-7 border border-stone-200 dark:border-stone-800 shadow-sm">
-              <h3 className="font-display text-lg sm:text-xl font-bold text-stone-900 dark:text-white mb-5">
+            <div className="bg-card rounded-2xl p-6 sm:p-7 border border-border shadow-sm">
+              <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-5">
                 Connect With David
               </h3>
               <div className="space-y-4">
                 <a
                   href="mailto:davidbriggd478@gmail.com"
-                  className="flex items-center gap-3 text-stone-600 dark:text-stone-400 hover:text-brand-500 transition-colors group"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center group-hover:bg-brand-500/20 transition-colors flex-shrink-0">
-                    <Mail size={16} className="text-brand-500" />
+                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center group-hover:bg-primary/20 transition-colors flex-shrink-0">
+                    <Mail size={16} className="text-primary" />
                   </div>
                   <span className="text-sm break-all">davidbriggd478@gmail.com</span>
                 </a>
@@ -118,40 +118,40 @@ export default function Contact() {
                   { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/profile.php?id=100089440026395", sub: "facebook.com/DavidBriggs" },
                 ].map(({ icon: Icon, label, href, sub }) => (
                   <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-stone-600 dark:text-stone-400 hover:text-brand-500 transition-colors group"
+                    className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center group-hover:bg-brand-500/10 transition-colors flex-shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors flex-shrink-0">
                       <Icon size={16} />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-medium">{label}</p>
-                      <p className="text-xs text-stone-400 truncate">{sub}</p>
+                      <p className="text-xs text-muted-foreground truncate">{sub}</p>
                     </div>
                   </a>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-7 border border-stone-200 dark:border-stone-800 shadow-sm">
-              <p className="text-brand-500 font-semibold text-xs tracking-widest uppercase mb-2">
+            <div className="bg-card rounded-2xl p-6 sm:p-7 border border-border shadow-sm">
+              <p className="text-primary font-semibold text-xs tracking-widest uppercase mb-2">
                 Typical Response
               </p>
-              <p className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white">
+              <p className="font-display text-xl sm:text-2xl font-bold text-foreground">
                 24-48 hours
               </p>
-              <p className="text-stone-400 text-sm mt-1">
+              <p className="text-muted-foreground text-sm mt-1">
                 WAT (UTC+1) · Port Harcourt, Nigeria
               </p>
             </div>
 
-            <div className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-7 border border-stone-200 dark:border-stone-800 shadow-sm">
-              <p className="text-brand-500 font-semibold text-xs tracking-widest uppercase mb-3">
+            <div className="bg-card rounded-2xl p-6 sm:p-7 border border-border shadow-sm">
+              <p className="text-primary font-semibold text-xs tracking-widest uppercase mb-3">
                 Currently Available For
               </p>
               {["Freelance projects", "Technical consulting", "Partnerships / collabs", "Speaking / mentorship"].map((item) => (
                 <div key={item} className="flex items-center gap-2 mb-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-500 flex-shrink-0" />
-                  <span className="text-stone-600 dark:text-stone-400 text-sm">{item}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm">{item}</span>
                 </div>
               ))}
             </div>
@@ -163,7 +163,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-8 space-y-5 border border-stone-200 dark:border-stone-800 shadow-sm" noValidate>
+            <form onSubmit={handleSubmit(onSubmit)} className="rounded-2xl bg-card p-6 sm:p-8 space-y-5 border border-border shadow-sm" noValidate>
               {globalError && (
                 <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
                   className="flex items-start gap-3 bg-red-500/10 border border-red-500/30 rounded-xl p-4"
@@ -175,39 +175,39 @@ export default function Contact() {
 
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Name <span className="text-red-400">*</span></label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">Name <span className="text-red-400">*</span></label>
                   <input {...register("name")} placeholder="Your name" className={`premium-input ${errors.name ? "!border-red-500" : ""}`} />
                   {errors.name && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {errors.name.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Email <span className="text-red-400">*</span></label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">Email <span className="text-red-400">*</span></label>
                   <input {...register("email")} type="email" placeholder="Email address" className={`premium-input ${errors.email ? "!border-red-500" : ""}`} />
                   {errors.email && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {errors.email.message}</p>}
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Subject <span className="text-red-400">*</span></label>
+                <label className="block text-xs font-medium text-muted-foreground mb-2">Subject <span className="text-red-400">*</span></label>
                 <input {...register("subject")} placeholder="What's this about?" className={`premium-input ${errors.subject ? "!border-red-500" : ""}`} />
                 {errors.subject && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {errors.subject.message}</p>}
               </div>
 
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Project type</label>
-                  <select {...register("projectType")} className="premium-input text-stone-600 dark:text-stone-400">
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">Project type</label>
+                  <select {...register("projectType")} className="premium-input text-muted-foreground">
                     <option value="">Select type (optional)</option>
                     {projectTypes.map((t) => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Budget range</label>
+                  <label className="block text-xs font-medium text-muted-foreground mb-2">Budget range</label>
                   <input {...register("budget")} placeholder="e.g. ₦200k-500k (optional)" className="premium-input" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Message <span className="text-red-400">*</span></label>
+                <label className="block text-xs font-medium text-muted-foreground mb-2">Message <span className="text-red-400">*</span></label>
                 <textarea {...register("message")} placeholder="Tell me about your project, goals, and timeline..." rows={5}
                   className={`premium-input resize-none ${errors.message ? "!border-red-500" : ""}`} />
                 {errors.message && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {errors.message.message}</p>}
@@ -218,7 +218,7 @@ export default function Contact() {
               >
                 {submitting ? (<><Loader2 size={16} className="animate-spin" />Sending...</>) : (<><Send size={16} />Send Message</>)}
               </button>
-              <p className="text-stone-400 text-xs text-center">No spam. Your information is never shared.</p>
+              <p className="text-muted-foreground text-xs text-center">No spam. Your information is never shared.</p>
             </form>
           </motion.div>
         </div>

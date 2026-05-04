@@ -13,8 +13,8 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 sm:pt-28 pb-24 sm:pb-32 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto w-full flex flex-col items-center text-center">
+    <section className="relative min-h-screen flex items-center pt-32 pb-20 px-4">
+      <div className="container mx-auto max-w-6xl w-full flex flex-col items-center text-center">
         {/* Profile image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -23,9 +23,9 @@ export default function Hero() {
           className="flex justify-center mb-8 sm:mb-10"
         >
           <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 blur-xl opacity-30 scale-110 animate-pulse" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-primary blur-xl opacity-30 scale-110 animate-pulse" />
 
-            <div className="relative w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-brand-500/30 animate-float shadow-2xl">
+            <div className="relative w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-primary/30 animate-float shadow-2xl">
               <Image
                 src="/profile.jpg"
                 alt="David Briggs - Software Developer from Abonnema, Nigeria"
@@ -40,18 +40,18 @@ export default function Hero() {
             <motion.div
               animate={{ y: [-5, 5, -5] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-2 sm:-bottom-3 -left-4 sm:-left-6 bg-white dark:bg-stone-900 rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 shadow-xl border border-stone-200 dark:border-stone-800"
+              className="absolute -bottom-2 sm:-bottom-3 -left-4 sm:-left-6 bg-card rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 shadow-xl border border-border"
             >
-              <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400">Based in</p>
-              <p className="font-semibold text-xs sm:text-sm text-stone-800 dark:text-white">Port Harcourt, NG</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground">Based in</p>
+              <p className="font-semibold text-xs sm:text-sm text-foreground">Port Harcourt, NG</p>
             </motion.div>
 
             <motion.div
               animate={{ y: [5, -5, 5] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-2 sm:-top-3 -right-4 sm:-right-6 bg-white dark:bg-stone-900 rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 shadow-xl border border-stone-200 dark:border-stone-800"
+              className="absolute -top-2 sm:-top-3 -right-4 sm:-right-6 bg-card rounded-2xl px-3 sm:px-4 py-2 sm:py-2.5 shadow-xl border border-border"
             >
-              <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400">Languages</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground">Languages</p>
               <p className="font-semibold text-xs sm:text-sm gradient-text">12+ mastered</p>
             </motion.div>
           </div>
@@ -62,7 +62,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xs sm:text-sm font-medium mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-brand-500 text-xs sm:text-sm font-medium mb-6"
         >
           <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
           Available for projects
@@ -72,7 +72,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-stone-900 dark:text-white mb-6 leading-[1.1] max-w-4xl"
+          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.1] max-w-4xl"
         >
           Building digital
           <br />
@@ -86,9 +86,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-stone-500 dark:text-stone-400 text-base sm:text-lg max-w-2xl leading-relaxed mb-10"
+          className="text-muted-foreground text-base sm:text-lg max-w-2xl leading-relaxed mb-10"
         >
-          Full-stack developer from <strong className="text-stone-700 dark:text-stone-300">Abonnema, Rivers State</strong> --
+          Full-stack developer from <strong className="text-foreground">Abonnema, Rivers State</strong> --
           crafting elegant code and impactful products that solve real African problems.
           Uniport undergraduate. Builder. Problem solver.
         </motion.p>
@@ -121,7 +121,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.65 }}
           className="flex items-center gap-3 sm:gap-4"
         >
-          <span className="text-stone-400 text-xs sm:text-sm">Find me on</span>
+          <span className="text-muted-foreground text-xs sm:text-sm">Find me on</span>
           {[
             { icon: Github, href: "https://github.com/dav-123", label: "GitHub" },
             { icon: Linkedin, href: "https://www.linkedin.com/in/david-briggs-bb5b4a379", label: "LinkedIn" },
@@ -134,7 +134,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="p-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-brand-500/10 hover:text-brand-500 transition-all duration-300 hover:scale-110"
+              className="p-2.5 rounded-xl bg-secondary hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
             >
               <Icon size={18} />
             </a>
@@ -146,7 +146,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-stone-400 text-xs"
+        className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground text-xs"
       >
         <span>Scroll to explore</span>
         <motion.div

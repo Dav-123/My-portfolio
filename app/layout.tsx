@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s | David Briggs",
   },
   description:
-    "David Briggs is a full-stack software developer from Abonnema, Rivers State, Nigeria. He builds digital solutions that simplify complexity. University of Port Harcourt undergraduate specializing in React, Next.js, React Native, Python, and AI-powered platforms. Creator of VeriRide Nigeria, DocVault, and B-Chat.",
+    "David Briggs is a full-stack software developer from Abonnema, Rivers State, Nigeria. He builds digital solutions that simplify complexity. University of Port Harcourt undergraduate specializing in React, Next.js, React Native, Python, and AI-powered platforms. Creator of Vora, DocVault, and B-Chat.",
   keywords: [
     "David Briggs",
     "David Briggs developer",
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     "Next.js developer Nigeria",
     "React Native developer Africa",
     "Python developer Port Harcourt",
-    "VeriRide Nigeria",
-    "SafeRide Nigeria",
+    "Vora",
+    "Vora Nigeria",
     "DocVault",
     "B-Chat",
     "Game-Buddy-Matcher",

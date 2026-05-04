@@ -52,21 +52,21 @@ export default function Services() {
   };
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4" ref={ref}>
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <p className="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-sm tracking-widest uppercase mb-4">
             What I Offer
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
             Services
           </h2>
-          <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Professional development services built around your goals, budget, and timeline.
           </p>
         </motion.div>
@@ -81,19 +81,19 @@ export default function Services() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="bg-white dark:bg-stone-900 rounded-2xl p-7 border border-stone-200 dark:border-stone-800 hover:border-brand-500/30 transition-all duration-300 group cursor-pointer shadow-sm card-lift"
+                className="rounded-2xl bg-card p-7 border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 group cursor-pointer shadow-sm card-lift"
                 onClick={scrollToContact}
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-5 group-hover:bg-brand-500/20 transition-colors duration-300">
-                  <Icon size={22} className="text-brand-500" />
+                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors duration-300">
+                  <Icon size={22} className="text-primary" />
                 </div>
-                <h3 className="font-display text-xl font-bold text-stone-900 dark:text-white mb-2">
+                <h3 className="font-display text-xl font-bold text-foreground mb-2">
                   {service.title}
                 </h3>
-                <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed mb-5">
+                <p className="text-muted-foreground text-sm leading-relaxed mb-5">
                   {service.desc}
                 </p>
-                <span className="text-brand-500 font-bold text-sm">{service.price}</span>
+                <span className="text-primary font-bold text-sm">{service.price}</span>
               </motion.div>
             );
           })}
@@ -105,13 +105,13 @@ export default function Services() {
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <div className="text-center mb-12">
-            <p className="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">
+            <p className="text-primary font-semibold text-sm tracking-widest uppercase mb-4">
               Book a Session
             </p>
-            <h3 className="font-display text-3xl font-bold text-stone-900 dark:text-white mb-4">
+            <h3 className="font-display text-3xl font-bold text-foreground mb-4">
               Consultation Packages
             </h3>
-            <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto mb-10">
+            <p className="text-muted-foreground max-w-xl mx-auto mb-10">
               Not ready for a full project? Book a focused consultation session and get expert guidance on your idea, architecture, or product.
             </p>
           </div>

@@ -65,21 +65,21 @@ export default function Skills() {
   };
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-stone-50/50 dark:bg-stone-950/50" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 bg-secondary/30" ref={ref}>
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <p className="text-brand-500 font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
             Technical Arsenal
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Languages & Technologies
           </h2>
-          <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto text-sm sm:text-base">
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base">
             Over 12 programming languages and a full-stack toolkit built through years of real project work.
           </p>
         </motion.div>
@@ -136,7 +136,7 @@ export default function Skills() {
               transition={{ duration: 0.3 }}
               className="text-center"
             >
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-stone-900 dark:text-white mb-1">
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-1">
                 {current.name}
               </h3>
               <p className="text-stone-400 text-sm">
@@ -149,21 +149,21 @@ export default function Skills() {
           <div className="flex items-center gap-4 mt-6">
             <button
               onClick={() => goTo((currentIndex - 1 + allSkills.length) % allSkills.length)}
-              className="p-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 transition-all duration-200 hover:scale-105"
+              className="p-2.5 rounded-xl bg-secondary hover:bg-secondary/80 transition-all duration-200 hover:scale-105"
               aria-label="Previous skill"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="p-2.5 rounded-xl bg-brand-500/10 hover:bg-brand-500/20 text-brand-500 transition-all duration-200 hover:scale-105"
+              className="p-2.5 rounded-xl bg-secondary hover:bg-secondary/80 text-primary transition-all duration-200 hover:scale-105"
               aria-label={isPlaying ? "Pause" : "Play"}
             >
               {isPlaying ? <Pause size={18} /> : <Play size={18} />}
             </button>
             <button
               onClick={() => goTo((currentIndex + 1) % allSkills.length)}
-              className="p-2.5 rounded-xl bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 transition-all duration-200 hover:scale-105"
+              className="p-2.5 rounded-xl bg-secondary hover:bg-secondary/80 transition-all duration-200 hover:scale-105"
               aria-label="Next skill"
             >
               <ChevronRight size={18} />
@@ -199,9 +199,9 @@ export default function Skills() {
                   whileHover={{ scale: 1.1 }}
                   className={`flex flex-col items-center gap-1.5 sm:gap-2 p-3 sm:p-4 rounded-2xl transition-all duration-300 cursor-pointer ${
                     isCurrent
-                      ? "bg-brand-500/10 border-2 border-brand-500/40 shadow-lg shadow-brand-500/10"
+                      ? "bg-primary/10 border-2 border-primary/40 shadow-lg shadow-primary/10"
                       : isRevealed
-                      ? "bg-white/60 dark:bg-stone-800/40 border border-stone-200/50 dark:border-stone-700/50 hover:border-brand-500/30"
+                      ? "bg-white/60 dark:bg-stone-800/40 border border-stone-200/50 dark:border-stone-700/50 hover:border-primary/30"
                       : "bg-stone-100/30 dark:bg-stone-900/30 border border-stone-200/20 dark:border-stone-800/20"
                   }`}
                 >

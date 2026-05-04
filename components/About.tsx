@@ -90,21 +90,21 @@ export default function About() {
   const { displayed, currentIdx, allDone } = useMultiTypewriter(paragraphs, 25, inView);
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6" ref={ref}>
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className="py-20 px-4" ref={ref}>
+      <div className="container mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <p className="text-brand-500 font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
             Origin Story
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-8 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
             A boy from the creeks who learned to build the internet.
           </h2>
 
-          <div className="space-y-5 text-stone-600 dark:text-stone-400 leading-relaxed text-[0.95rem] sm:text-[1.05rem]">
+          <div className="space-y-5 text-muted-foreground leading-relaxed text-[0.95rem] sm:text-[1.05rem]">
             <p>
               {displayed[0] || ""}
               <span className="typewriter-cursor" style={{ opacity: currentIdx === 0 && !allDone ? 1 : 0 }} />
@@ -114,13 +114,13 @@ export default function About() {
               <span className="typewriter-cursor" style={{ opacity: currentIdx === 1 && !allDone ? 1 : 0 }} />
             </p>
 
-            <div className="my-8 py-6 px-6 sm:px-8 rounded-2xl bg-brand-500/5 border border-brand-500/20">
-              <p className="text-stone-800 dark:text-stone-200 font-display text-lg sm:text-xl font-semibold leading-relaxed">
+            <div className="my-8 py-6 px-6 sm:px-8 rounded-2xl bg-primary/5 border border-primary/20">
+              <p className="text-foreground font-display text-lg sm:text-xl font-semibold leading-relaxed">
                 &quot;{displayed[2] || ""}
                 <span className="typewriter-cursor" style={{ opacity: currentIdx === 2 && !allDone ? 1 : 0 }} />
               </p>
               {displayed[2]?.length === paragraphs[2].length && (
-                <p className="text-stone-400 text-xs sm:text-sm mt-3 font-medium">
+                <p className="text-muted-foreground text-xs sm:text-sm mt-3 font-medium">
                   -- David Briggs
                 </p>
               )}
@@ -146,15 +146,15 @@ export default function About() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 + 0.2 }}
-                className="glass-card p-6 sm:p-7 group card-lift"
+                className="p-6 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 group-hover:bg-brand-500/20 transition-colors duration-300">
-                  <Icon size={22} className="text-brand-500" />
+                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                  <Icon size={22} className="text-primary" />
                 </div>
-                <h3 className="font-display font-bold text-base sm:text-lg text-stone-900 dark:text-white mb-2">
+                <h3 className="font-display font-bold text-base sm:text-lg text-foreground mb-2">
                   {trait.title}
                 </h3>
-                <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {trait.desc}
                 </p>
               </motion.div>

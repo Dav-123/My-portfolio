@@ -6,13 +6,13 @@ import type { Project } from "@/types";
 
 const projects: Project[] = [
   {
-    id: "Veriride",
-    title: "SafeRide Nigeria",
+    id: "vora",
+    title: "Vora",
     description: "AI-powered transport safety platform curbing one-chance vehicle kidnappings across Nigeria.",
     longDescription:
-      "VeriRide Nigeria is a flagship social impact project born from a real incident. The platform enables passengers to verify commercial vehicles before boarding via QR code scans, tracks rides in real-time, and alerts emergency contacts if something goes wrong. Includes a React Native passenger app, Node.js backend, and Next.js web portals for drivers and government agencies. Designed for a Rivers State pilot with plans to scale nationally through FRSC, Nigeria Police Force, and the Federal Ministry of Transportation.",
+      "Vora is a flagship social impact project born from a real incident. The platform enables passengers to verify commercial vehicles before boarding via QR code scans, tracks rides in real-time, and alerts emergency contacts if something goes wrong. Includes a React Native passenger app, Node.js backend, and Next.js web portals for drivers and government agencies. Designed for a Rivers State pilot with plans to scale nationally through FRSC, Nigeria Police Force, and the Federal Ministry of Transportation.",
     tech: ["React Native", "Node.js", "Next.js", "Express", "PostgreSQL", "AI/ML"],
-    image: "/projects/veriride.png",
+    image: "/projects/vora.png",
     status: "ongoing",
     featured: true,
     badge: "Flagship Social Impact",
@@ -70,7 +70,7 @@ const statusColors = {
 };
 
 const projectIcons: Record<string, { icon: React.ElementType; color: string; bg: string }> = {
-  Veriride: { icon: Shield, color: "text-red-400", bg: "from-red-900/30 to-stone-900" },
+  vora: { icon: Shield, color: "text-red-400", bg: "from-red-900/30 to-stone-900" },
   docvault: { icon: BookOpen, color: "text-amber-400", bg: "from-amber-900/30 to-stone-900" },
   bchat: { icon: MessageCircle, color: "text-blue-400", bg: "from-blue-900/30 to-stone-900" },
   "primetime-comics": { icon: Palette, color: "text-pink-400", bg: "from-pink-900/30 to-stone-900" },
@@ -89,25 +89,25 @@ export default function Projects() {
     return projects.filter((p) => p.tech.includes(activeFilter));
   }, [activeFilter]);
 
-  const featuredProject = filtered.find((p) => p.id === "Veriride");
-  const gridProjects = filtered.filter((p) => p.id !== "Veriride");
+  const featuredProject = filtered.find((p) => p.id === "vora");
+  const gridProjects = filtered.filter((p) => p.id !== "vora");
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-stone-50/50 dark:bg-stone-950/50" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 bg-secondary/30" ref={ref}>
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-brand-500 font-semibold text-sm tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-sm tracking-widest uppercase mb-4">
             What I&apos;ve Built
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
             Featured Projects
           </h2>
-          <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto">
             Real products solving real problems -- from Bluetooth mesh networks to government-grade safety platforms.
           </p>
         </motion.div>
@@ -122,12 +122,12 @@ export default function Projects() {
           <div className="flex items-center justify-center gap-3 mb-4 md:hidden">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="inline-flex items-center gap-2 bg-white dark:bg-stone-800 px-4 py-2 rounded-xl text-sm font-medium text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-700"
+              className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-xl text-sm font-medium text-muted-foreground border border-border hover:border-primary/50"
             >
               <Filter size={14} />
               Filter by tech
               {activeFilter !== "All" && (
-                <span className="bg-brand-500 text-white text-xs px-2 py-0.5 rounded-full">
+                <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">
                   {activeFilter}
                 </span>
               )}
@@ -135,7 +135,7 @@ export default function Projects() {
             {activeFilter !== "All" && (
               <button
                 onClick={() => setActiveFilter("All")}
-                className="text-xs text-brand-500 font-semibold"
+                className="text-xs text-primary font-semibold"
               >
                 Clear
               </button>
@@ -154,8 +154,8 @@ export default function Projects() {
                 whileTap={{ scale: 0.97 }}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   activeFilter === tech
-                    ? "bg-brand-500 text-white shadow-[0_0_15px_rgba(249,115,22,0.3)]"
-                    : "bg-white dark:bg-stone-800 text-stone-500 dark:text-stone-400 border border-stone-200 dark:border-stone-700 hover:text-brand-500 hover:border-brand-500/30"
+                    ? "bg-primary text-white shadow-[0_0_15px_rgba(249,115,22,0.3)]"
+                    : "bg-card text-muted-foreground border border-border hover:text-primary hover:border-primary/50"
                 }`}
               >
                 {tech}
@@ -169,14 +169,14 @@ export default function Projects() {
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
-                className="text-center text-stone-400 text-sm mt-4"
+                className="text-center text-muted-foreground text-sm mt-4"
               >
                 Showing {filtered.length} project{filtered.length !== 1 ? "s" : ""} using{" "}
-                <span className="text-brand-500 font-semibold">{activeFilter}</span>
+                <span className="text-primary font-semibold">{activeFilter}</span>
                 {" · "}
                 <button
                   onClick={() => setActiveFilter("All")}
-                  className="text-stone-500 hover:text-brand-500 underline transition-colors"
+                  className="text-muted-foreground hover:text-primary underline transition-colors"
                 >
                   show all
                 </button>
@@ -194,15 +194,15 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               className="text-center py-20"
             >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-stone-200 dark:bg-stone-800 flex items-center justify-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-secondary flex items-center justify-center">
                 <Filter size={28} className="text-stone-400" />
               </div>
-              <p className="text-stone-400 text-lg">
-                No projects using <span className="text-brand-500">{activeFilter}</span> yet.
+              <p className="text-muted-foreground text-lg">
+                No projects using <span className="text-primary">{activeFilter}</span> yet.
               </p>
               <button
                 onClick={() => setActiveFilter("All")}
-                className="mt-4 text-brand-500 font-semibold hover:underline"
+                className="mt-4 text-primary font-semibold hover:underline"
               >
                 View all projects
               </button>
@@ -224,7 +224,7 @@ export default function Projects() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="mb-8 bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-red-500/20 hover:border-red-500/40 transition-all duration-500 cursor-pointer group shadow-sm"
+                    className="mb-8 rounded-2xl bg-card overflow-hidden border border-primary/20 hover:border-primary/40 transition-all duration-500 cursor-pointer group shadow-sm"
                     onClick={() => setSelected(featuredProject)}
                   >
                     <div className="grid md:grid-cols-2 gap-0">
@@ -235,10 +235,10 @@ export default function Projects() {
                             {featuredProject.badge}
                           </span>
                         )}
-                        <h3 className="font-display text-3xl font-bold text-stone-900 dark:text-white mb-4">
+                        <h3 className="font-display text-3xl font-bold text-foreground mb-4">
                           {featuredProject.title}
                         </h3>
-                        <p className="text-stone-500 dark:text-stone-400 leading-relaxed mb-6">
+                        <p className="text-muted-foreground leading-relaxed mb-6">
                           {featuredProject.description}
                         </p>
                         <div className="flex flex-wrap gap-2 mb-6">
@@ -249,7 +249,7 @@ export default function Projects() {
                                 e.stopPropagation();
                                 setActiveFilter(t);
                               }}
-                              className="text-xs px-3 py-1 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-brand-500/10 hover:text-brand-500 transition-colors"
+                              className="text-xs px-3 py-1 rounded-full bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                             >
                               {t}
                             </button>
@@ -284,7 +284,7 @@ export default function Projects() {
                           exit={{ opacity: 0, scale: 0.9 }}
                           transition={{ duration: 0.4, delay: i * 0.08 }}
                           whileHover={{ y: -6 }}
-                          className="bg-white dark:bg-stone-900 rounded-2xl overflow-hidden border border-stone-200 dark:border-stone-800 hover:border-brand-500/30 transition-all duration-300 cursor-pointer group shadow-sm"
+                          className="rounded-2xl bg-card overflow-hidden border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 cursor-pointer group shadow-sm"
                           onClick={() => setSelected(project)}
                         >
                           <div className={`h-48 bg-gradient-to-br ${iconData?.bg || "from-stone-800 to-stone-900"} flex items-center justify-center`}>
@@ -298,10 +298,10 @@ export default function Projects() {
                                 ● {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
                               </span>
                             </div>
-                            <h3 className="font-display text-xl font-bold text-stone-900 dark:text-white mb-2">
+                            <h3 className="font-display text-xl font-bold text-foreground mb-2">
                               {project.title}
                             </h3>
-                            <p className="text-stone-500 dark:text-stone-400 text-sm leading-relaxed mb-4">
+                            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                               {project.description}
                             </p>
                             <div className="flex flex-wrap gap-1.5">
@@ -312,13 +312,13 @@ export default function Projects() {
                                     e.stopPropagation();
                                     setActiveFilter(t);
                                   }}
-                                  className="text-xs px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 hover:bg-brand-500/10 hover:text-brand-500 transition-colors"
+                                  className="text-xs px-2.5 py-0.5 rounded-full bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                                 >
                                   {t}
                                 </button>
                               ))}
                               {project.tech.length > 4 && (
-                                <span className="text-xs px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-500">
+                                <span className="text-xs px-2.5 py-0.5 rounded-full bg-secondary text-muted-foreground">
                                   +{project.tech.length - 4}
                                 </span>
                               )}
@@ -353,7 +353,7 @@ export default function Projects() {
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 30 }}
                 transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                className="bg-white dark:bg-stone-900 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-stone-200 dark:border-stone-800 p-8"
+                className="rounded-2xl bg-card max-w-2xl w-full max-h-[85vh] overflow-y-auto border border-border p-8"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-start justify-between mb-6">
@@ -367,25 +367,25 @@ export default function Projects() {
                           {selected.badge}
                         </span>
                       )}
-                      <h2 className="font-display text-2xl sm:text-3xl font-bold text-stone-900 dark:text-white">
+                      <h2 className="font-display text-2xl sm:text-3xl font-bold text-foreground">
                         {selected.title}
                       </h2>
                     </div>
                   </div>
                   <button
                     onClick={() => setSelected(null)}
-                    className="p-2 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors ml-4 flex-shrink-0"
+                    className="p-2 rounded-xl hover:bg-secondary transition-colors ml-4 flex-shrink-0"
                   >
                     <X size={20} />
                   </button>
                 </div>
 
-                <p className="text-stone-600 dark:text-stone-400 leading-relaxed mb-6">
+                <p className="text-muted-foreground leading-relaxed mb-6">
                   {selected.longDescription}
                 </p>
 
                 <div className="mb-3">
-                  <p className="text-stone-400 text-xs uppercase tracking-widest mb-3 font-semibold">
+                  <p className="text-muted-foreground text-xs uppercase tracking-widest mb-3 font-semibold">
                     Tech Stack
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -397,13 +397,13 @@ export default function Projects() {
                           setActiveFilter(t);
                           document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className="text-sm px-3 py-1 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 hover:bg-brand-500 hover:text-white transition-all"
+                        className="text-sm px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all"
                       >
                         {t}
                       </button>
                     ))}
                   </div>
-                  <p className="text-stone-400 text-xs mt-2">
+                  <p className="text-muted-foreground text-xs mt-2">
                     Click a tag to see other projects using that technology
                   </p>
                 </div>

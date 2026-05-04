@@ -23,7 +23,7 @@ function getInitials(name: string): string {
 
 function getAvatarColor(name: string): string {
   const colors = [
-    "bg-brand-500", "bg-teal-500", "bg-blue-500", "bg-emerald-500",
+    "bg-primary", "bg-teal-500", "bg-blue-500", "bg-emerald-500",
     "bg-amber-500", "bg-rose-500", "bg-cyan-500", "bg-indigo-500",
   ];
   let hash = 0;
@@ -92,33 +92,33 @@ export default function Reviews() {
   };
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-stone-50/50 dark:bg-stone-950/50" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 bg-secondary/30" ref={ref}>
+      <div className="container mx-auto max-w-7xl">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} className="text-center mb-16 sm:mb-20">
-          <p className="text-brand-500 font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">Client Stories</p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">What People Say</h2>
-          <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto text-sm sm:text-base">Real feedback from real clients and collaborators.</p>
+          <p className="text-primary font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">Client Stories</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">What People Say</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base">Real feedback from real clients and collaborators.</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 sm:mb-20">
           {reviews.map((review, i) => (
-            <motion.div key={review.id} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: i * 0.08 }} className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-7 flex flex-col border border-stone-200 dark:border-stone-800 shadow-sm card-lift">
+            <motion.div key={review.id} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: i * 0.08 }} className="rounded-2xl bg-card p-6 sm:p-7 flex flex-col border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 shadow-sm card-lift">
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: 5 }).map((_, si) => (
-                  <Star key={si} size={14} className={si < review.rating ? "text-brand-500 fill-brand-500" : "text-stone-300 dark:text-stone-700"} />
+                  <Star key={si} size={14} className={si < review.rating ? "text-primary fill-primary" : "text-stone-300 dark:text-stone-700"} />
                 ))}
               </div>
-              <p className="text-stone-600 dark:text-stone-400 leading-relaxed text-sm flex-1 mb-6">
+              <p className="text-muted-foreground leading-relaxed text-sm flex-1 mb-6">
                 &quot;{review.content}&quot;
               </p>
-              <div className="border-t border-stone-200 dark:border-stone-800 pt-4 flex items-center gap-3">
+              <div className="border-t border-border pt-4 flex items-center gap-3">
                 {/* Circular avatar */}
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 ${getAvatarColor(review.name)}`}>
                   {getInitials(review.name)}
                 </div>
                 <div className="min-w-0">
-                  <p className="font-semibold text-stone-900 dark:text-white text-sm truncate">{review.name}</p>
-                  <p className="text-stone-400 text-xs truncate">{review.role}{review.company ? ` · ${review.company}` : ""}</p>
+                  <p className="font-semibold text-foreground text-sm truncate">{review.name}</p>
+                  <p className="text-muted-foreground text-xs truncate">{review.role}{review.company ? ` · ${review.company}` : ""}</p>
                 </div>
               </div>
             </motion.div>
@@ -128,16 +128,16 @@ export default function Reviews() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.3 }} className="max-w-2xl mx-auto">
           <AnimatePresence mode="wait">
             {submitted ? (
-              <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="bg-white dark:bg-stone-900 rounded-2xl p-8 sm:p-10 text-center border border-emerald-500/20 shadow-sm">
+              <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="rounded-2xl bg-card p-8 sm:p-10 text-center border border-emerald-500/20 shadow-sm">
                 <div className="text-4xl sm:text-5xl mb-4">🙏</div>
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-3">Thank you!</h3>
-                <p className="text-stone-500 dark:text-stone-400 text-sm mb-6">Your review has been submitted and will appear after approval.</p>
-                <button onClick={() => setSubmitted(false)} className="text-brand-500 text-sm font-semibold hover:underline">Submit another review</button>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-3">Thank you!</h3>
+                <p className="text-muted-foreground text-sm mb-6">Your review has been submitted and will appear after approval.</p>
+                <button onClick={() => setSubmitted(false)} className="text-primary text-sm font-semibold hover:underline">Submit another review</button>
               </motion.div>
             ) : (
-              <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-8 border border-stone-200 dark:border-stone-800 shadow-sm">
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-2">Worked with David?</h3>
-                <p className="text-stone-500 dark:text-stone-400 text-sm mb-7">Leave a review and help others know what to expect.</p>
+              <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="rounded-2xl bg-card p-6 sm:p-8 border border-border shadow-sm">
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-2">Worked with David?</h3>
+                <p className="text-muted-foreground text-sm mb-7">Leave a review and help others know what to expect.</p>
 
                 {submitError && (
                   <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="flex items-start gap-3 bg-red-500/10 border border-red-500/30 rounded-xl p-4 mb-5">
@@ -149,43 +149,43 @@ export default function Reviews() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Name <span className="text-red-400">*</span></label>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Name <span className="text-red-400">*</span></label>
                       <input {...register("name")} placeholder="Your name" className={`premium-input ${errors.name ? "!border-red-500" : ""}`} />
                       {errors.name && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {errors.name.message}</p>}
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Role <span className="text-red-400">*</span></label>
+                      <label className="block text-xs font-medium text-muted-foreground mb-2">Role <span className="text-red-400">*</span></label>
                       <input {...register("role")} placeholder="Your role / title" className={`premium-input ${errors.role ? "!border-red-500" : ""}`} />
                       {errors.role && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {errors.role.message}</p>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Company</label>
+                    <label className="block text-xs font-medium text-muted-foreground mb-2">Company</label>
                     <input {...register("company")} placeholder="Company / Organization (optional)" className="premium-input" />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Review <span className="text-red-400">*</span></label>
+                    <label className="block text-xs font-medium text-muted-foreground mb-2">Review <span className="text-red-400">*</span></label>
                     <textarea {...register("content")} placeholder="Your honest review" rows={4}
                       className={`premium-input resize-none ${errors.content ? "!border-red-500" : ""}`} />
                     <div className="flex items-center justify-between mt-1.5">
                       {errors.content ? <p className="text-red-400 text-xs flex items-center gap-1"><AlertCircle size={11} /> {errors.content.message}</p> : <span />}
-                      <span className={`text-xs ml-auto ${charCount > 900 ? "text-red-400" : charCount > 700 ? "text-amber-400" : "text-stone-400"}`}>{charCount}/1000</span>
+                      <span className={`text-xs ml-auto ${charCount > 900 ? "text-red-400" : charCount > 700 ? "text-amber-400" : "text-muted-foreground"}`}>{charCount}/1000</span>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-sm text-stone-500 font-medium">Your rating:</span>
+                    <span className="text-sm text-muted-foreground font-medium">Your rating:</span>
                     <div className="flex gap-1">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <button key={i} type="button" onClick={() => setRating(i + 1)} onMouseEnter={() => setHoveredStar(i + 1)} onMouseLeave={() => setHoveredStar(0)}
                           className="transition-all hover:scale-125 focus:outline-none focus-visible:scale-125" aria-label={`Rate ${i + 1} star${i !== 0 ? "s" : ""}`}>
-                          <Star size={20} className={i < (hoveredStar || rating) ? "text-brand-500 fill-brand-500" : "text-stone-300 dark:text-stone-700"} />
+                          <Star size={20} className={i < (hoveredStar || rating) ? "text-primary fill-primary" : "text-stone-300 dark:text-stone-700"} />
                         </button>
                       ))}
                     </div>
-                    <span className="text-stone-400 text-sm">{["", "Poor", "Fair", "Good", "Great", "Excellent"][hoveredStar || rating]}</span>
+                    <span className="text-muted-foreground text-sm">{["", "Poor", "Fair", "Good", "Great", "Excellent"][hoveredStar || rating]}</span>
                   </div>
 
                   <button type="submit" disabled={submitting}

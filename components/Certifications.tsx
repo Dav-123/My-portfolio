@@ -52,21 +52,21 @@ export default function Certifications() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4" ref={ref}>
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <p className="text-brand-500 font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
             Verified Credentials
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Certifications
           </h2>
-          <p className="text-stone-500 dark:text-stone-400 max-w-xl mx-auto text-sm sm:text-base">
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base">
             Formal recognition of expertise in AI, machine learning, and Python programming.
           </p>
         </motion.div>
@@ -78,13 +78,13 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className={`relative group bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-8 border ${cert.border} hover:shadow-xl transition-all duration-500 overflow-hidden card-lift`}
+              className={`relative group rounded-2xl bg-card p-6 sm:p-8 border ${cert.border} hover:shadow-xl transition-all duration-500 overflow-hidden card-lift`}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${cert.gradient} opacity-50 rounded-2xl`} />
 
               <div className="relative z-10 text-center">
                 <div className="flex items-center justify-center mb-6">
-                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl ${cert.iconBg} flex items-center justify-center`}>
+                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-secondary flex items-center justify-center`}>
                     {cert.logoElement === "python" ? (
                       <SiPython size={36} className="sm:text-[44px] text-[#3776AB]" />
                     ) : (
@@ -98,16 +98,16 @@ export default function Certifications() {
                     <Award size={10} />
                     {cert.tag}
                   </span>
-                  <span className="text-stone-500 dark:text-stone-500 text-sm font-medium">
+                  <span className="text-muted-foreground text-sm font-medium">
                     {cert.date}
                   </span>
                 </div>
 
-                <h3 className="font-display text-base sm:text-xl font-bold text-stone-900 dark:text-white mb-2 leading-tight">
+                <h3 className="font-display text-base sm:text-xl font-bold text-foreground mb-2 leading-tight">
                   {cert.title}
                 </h3>
 
-                <p className="text-stone-500 dark:text-stone-400 text-sm mb-1">
+                <p className="text-muted-foreground text-sm mb-1">
                   Issued by
                 </p>
                 <p className="text-stone-700 dark:text-stone-300 font-medium text-sm mb-4">
@@ -124,7 +124,7 @@ export default function Certifications() {
                   href={cert.verifyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-brand-500 hover:text-brand-400 transition-colors group/link"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors group/link"
                 >
                   Verify Certificate
                   <ExternalLink size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
@@ -138,7 +138,7 @@ export default function Certifications() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.5 }}
-          className="text-center text-stone-400 dark:text-stone-600 text-sm mt-8"
+          className="text-center text-muted-foreground text-sm mt-8"
         >
           More certifications in progress -- always learning.
         </motion.p>
