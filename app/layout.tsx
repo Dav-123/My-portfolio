@@ -168,7 +168,7 @@ export default function RootLayout({
         <meta name="geo.placename" content="Port Harcourt" />
         <meta name="google-site-verification" content="2CwhtIyL-D38le9StklEvLvLr8AQ1oKe0XxU4s1tMFs" />
       </head>
-      <body className="noise font-body">
+      <body className="font-body">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

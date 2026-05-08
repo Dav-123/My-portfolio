@@ -21,16 +21,8 @@ function getInitials(name: string): string {
   return name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2);
 }
 
-function getAvatarColor(name: string): string {
-  const colors = [
-    "bg-primary", "bg-teal-500", "bg-blue-500", "bg-emerald-500",
-    "bg-amber-500", "bg-rose-500", "bg-cyan-500", "bg-indigo-500",
-  ];
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  return colors[Math.abs(hash) % colors.length];
+function getAvatarUrl(name: string): string {
+  return `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name)}`;
 }
 
 const seedReviews: Review[] = [
@@ -105,17 +97,18 @@ export default function Reviews() {
             <motion.div key={review.id} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: i * 0.08 }} className="rounded-2xl bg-card p-6 sm:p-7 flex flex-col border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 shadow-sm card-lift">
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: 5 }).map((_, si) => (
-                  <Star key={si} size={14} className={si < review.rating ? "text-primary fill-primary" : "text-stone-300 dark:text-stone-700"} />
+                  <Star key={si} size={14} className={si < review.rating ? "fill-yellow-500 text-yellow-500" : "text-stone-300 dark:text-stone-700"} />
                 ))}
               </div>
               <p className="text-muted-foreground leading-relaxed text-sm flex-1 mb-6">
                 &quot;{review.content}&quot;
               </p>
               <div className="border-t border-border pt-4 flex items-center gap-3">
-                {/* Circular avatar */}
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 ${getAvatarColor(review.name)}`}>
-                  {getInitials(review.name)}
-                </div>
+                <img
+                  src={getAvatarUrl(review.name)}
+                  alt={review.name}
+                  className="w-12 h-12 rounded-full bg-secondary"
+                />
                 <div className="min-w-0">
                   <p className="font-semibold text-foreground text-sm truncate">{review.name}</p>
                   <p className="text-muted-foreground text-xs truncate">{review.role}{review.company ? ` · ${review.company}` : ""}</p>
@@ -181,7 +174,7 @@ export default function Reviews() {
                       {Array.from({ length: 5 }).map((_, i) => (
                         <button key={i} type="button" onClick={() => setRating(i + 1)} onMouseEnter={() => setHoveredStar(i + 1)} onMouseLeave={() => setHoveredStar(0)}
                           className="transition-all hover:scale-125 focus:outline-none focus-visible:scale-125" aria-label={`Rate ${i + 1} star${i !== 0 ? "s" : ""}`}>
-                          <Star size={20} className={i < (hoveredStar || rating) ? "text-primary fill-primary" : "text-stone-300 dark:text-stone-700"} />
+                          <Star size={20} className={i < (hoveredStar || rating) ? "fill-yellow-500 text-yellow-500" : "text-stone-300 dark:text-stone-700"} />
                         </button>
                       ))}
                     </div>

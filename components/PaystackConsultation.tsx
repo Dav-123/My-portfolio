@@ -99,28 +99,28 @@ export default function PaystackConsultation() {
 
   if (step === "success" && bookingResult) {
     return (
-      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-10 text-center max-w-md mx-auto border border-emerald-500/20 shadow-sm">
+      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-card border border-emerald-500/20 rounded-2xl p-6 sm:p-10 text-center max-w-md mx-auto shadow-sm">
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200, delay: 0.1 }}>
           <CheckCircle size={56} className="text-emerald-400 mx-auto mb-5" />
         </motion.div>
-        <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-2">Booking confirmed!</h3>
-        <p className="text-stone-500 dark:text-stone-400 mb-4 text-sm">A confirmation email has been sent to <span className="text-brand-500 font-semibold">{email}</span>. David will reach out within 12 hours.</p>
-        <div className="bg-stone-50 dark:bg-stone-800/50 rounded-xl p-4 mb-6 text-left space-y-2">
-          <div className="flex justify-between text-sm"><span className="text-stone-400">Package</span><span className="font-semibold text-stone-900 dark:text-white">{bookingResult.tier}</span></div>
-          <div className="flex justify-between text-sm"><span className="text-stone-400">Amount paid</span><span className="font-semibold text-emerald-400">{bookingResult.amount}</span></div>
-          <div className="flex justify-between text-sm"><span className="text-stone-400">Reference</span><span className="font-mono text-xs text-stone-500 dark:text-stone-400">{bookingResult.reference}</span></div>
+        <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-2">Booking confirmed!</h3>
+        <p className="text-muted-foreground mb-4 text-sm">A confirmation email has been sent to <span className="text-primary font-semibold">{email}</span>. David will reach out within 12 hours.</p>
+        <div className="bg-secondary/50 rounded-xl p-4 mb-6 text-left space-y-2">
+          <div className="flex justify-between text-sm"><span className="text-muted-foreground">Package</span><span className="font-semibold text-foreground">{bookingResult.tier}</span></div>
+          <div className="flex justify-between text-sm"><span className="text-muted-foreground">Amount paid</span><span className="font-semibold text-emerald-400">{bookingResult.amount}</span></div>
+          <div className="flex justify-between text-sm"><span className="text-muted-foreground">Reference</span><span className="font-mono text-xs text-muted-foreground">{bookingResult.reference}</span></div>
         </div>
-        <button onClick={() => { setStep("select"); setBookingResult(null); setName(""); setEmail(""); setTopic(""); }} className="text-brand-500 text-sm font-semibold hover:underline">Book another session</button>
+        <button onClick={() => { setStep("select"); setBookingResult(null); setName(""); setEmail(""); setTopic(""); }} className="text-primary text-sm font-semibold hover:underline">Book another session</button>
       </motion.div>
     );
   }
 
   if (step === "error") {
     return (
-      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-10 text-center max-w-md mx-auto border border-red-500/20 shadow-sm">
+      <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-card border border-red-500/20 rounded-2xl p-6 sm:p-10 text-center max-w-md mx-auto shadow-sm">
         <AlertCircle size={56} className="text-red-400 mx-auto mb-5" />
-        <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-3">Verification failed</h3>
-        <p className="text-stone-500 dark:text-stone-400 mb-6 text-sm leading-relaxed">{errorMsg}</p>
+        <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-3">Verification failed</h3>
+        <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{errorMsg}</p>
         <div className="flex gap-3 justify-center flex-wrap">
           <button onClick={() => { setStep("select"); setErrorMsg(""); }} className="btn-primary text-sm">Try again</button>
           <a href={`mailto:${process.env.NEXT_PUBLIC_DAVID_EMAIL || "david@davidbriggs.dev"}?subject=Consultation Booking Issue`} className="btn-secondary text-sm">Contact David</a>
@@ -131,10 +131,10 @@ export default function PaystackConsultation() {
 
   if (step === "verifying") {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white dark:bg-stone-900 rounded-2xl p-6 sm:p-10 text-center max-w-md mx-auto border border-stone-200 dark:border-stone-800 shadow-sm">
-        <Loader2 size={40} className="text-brand-500 mx-auto mb-5 animate-spin" />
-        <h3 className="font-display text-lg sm:text-xl font-bold text-stone-900 dark:text-white mb-2">Verifying payment...</h3>
-        <p className="text-stone-400 text-sm">Please don&apos;t close this tab. This usually takes 5-10 seconds.</p>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-card border border-border rounded-2xl p-6 sm:p-10 text-center max-w-md mx-auto shadow-sm">
+        <Loader2 size={40} className="text-primary mx-auto mb-5 animate-spin" />
+        <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-2">Verifying payment...</h3>
+        <p className="text-muted-foreground text-sm">Please don&apos;t close this tab. This usually takes 5-10 seconds.</p>
       </motion.div>
     );
   }
@@ -146,28 +146,28 @@ export default function PaystackConsultation() {
           const isSelected = selectedTier.id === option.id;
           return (
             <motion.div key={option.id} onClick={() => setSelectedTier(option)} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-              className={`relative bg-white dark:bg-stone-900 rounded-2xl p-5 sm:p-6 cursor-pointer transition-all duration-300 border-2 shadow-sm ${
-                isSelected ? "border-brand-500 shadow-[0_0_30px_rgba(249,115,22,0.15)]" : "border-stone-200 dark:border-stone-800 hover:border-brand-500/30"
+              className={`relative bg-card border border-border rounded-2xl p-5 sm:p-6 cursor-pointer transition-all duration-300 border-2 shadow-sm ${
+                isSelected ? "border-primary shadow-[0_0_30px_rgba(249,115,22,0.15)]" : "border-border hover:border-primary/30"
               }`}
             >
               {option.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</span>
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</span>
               )}
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h4 className="font-display font-bold text-stone-900 dark:text-white text-sm sm:text-base">{option.label}</h4>
-                  <p className="text-stone-400 text-xs">{option.duration}</p>
+                  <h4 className="font-display font-bold text-foreground text-sm sm:text-base">{option.label}</h4>
+                  <p className="text-muted-foreground text-xs">{option.duration}</p>
                 </div>
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${isSelected ? "border-brand-500 bg-brand-500" : "border-stone-400 dark:border-stone-600"}`}>
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${isSelected ? "border-primary bg-primary" : "border-stone-400 dark:border-stone-600"}`}>
                   {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
                 </div>
               </div>
-              <p className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-3">{option.display}</p>
-              <p className="text-stone-500 dark:text-stone-400 text-sm mb-4 leading-relaxed">{option.description}</p>
+              <p className="text-xl sm:text-2xl font-bold text-foreground mb-3">{option.display}</p>
+              <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{option.description}</p>
               <ul className="space-y-1.5">
                 {option.features.map((f) => (
-                  <li key={f} className="text-xs text-stone-500 dark:text-stone-400 flex items-start gap-2">
-                    <CheckCircle size={11} className="text-brand-500 flex-shrink-0 mt-0.5" />{f}
+                  <li key={f} className="text-xs text-muted-foreground flex items-start gap-2">
+                    <CheckCircle size={11} className="text-primary flex-shrink-0 mt-0.5" />{f}
                   </li>
                 ))}
               </ul>
@@ -177,26 +177,26 @@ export default function PaystackConsultation() {
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.div key={selectedTier.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }} className="bg-white dark:bg-stone-900 rounded-2xl p-5 sm:p-7 max-w-xl mx-auto border border-stone-200 dark:border-stone-800 shadow-sm">
+        <motion.div key={selectedTier.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }} className="bg-card border border-border rounded-2xl p-5 sm:p-7 max-w-xl mx-auto shadow-sm">
           <div className="flex items-center justify-between mb-5">
-            <h4 className="font-display font-bold text-stone-900 dark:text-white text-sm sm:text-base">Your Details</h4>
-            <span className="text-brand-500 font-bold text-sm">{selectedTier.display} · {selectedTier.duration}</span>
+            <h4 className="font-display font-bold text-foreground text-sm sm:text-base">Your Details</h4>
+            <span className="text-primary font-bold text-sm">{selectedTier.display} · {selectedTier.duration}</span>
           </div>
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Full Name <span className="text-red-400">*</span></label>
+              <label className="block text-xs font-medium text-muted-foreground mb-2">Full Name <span className="text-red-400">*</span></label>
               <input value={name} onChange={(e) => { setName(e.target.value); if (fieldErrors.name) setFieldErrors((prev) => ({ ...prev, name: undefined })); }} placeholder="Your full name"
                 className={`premium-input ${fieldErrors.name ? "!border-red-500" : ""}`} />
               {fieldErrors.name && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {fieldErrors.name}</p>}
             </div>
             <div>
-              <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Email <span className="text-red-400">*</span></label>
+              <label className="block text-xs font-medium text-muted-foreground mb-2">Email <span className="text-red-400">*</span></label>
               <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); if (fieldErrors.email) setFieldErrors((prev) => ({ ...prev, email: undefined })); }} placeholder="Email address for confirmation"
                 className={`premium-input ${fieldErrors.email ? "!border-red-500" : ""}`} />
               {fieldErrors.email && <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle size={11} /> {fieldErrors.email}</p>}
             </div>
             <div>
-              <label className="block text-xs font-medium text-stone-600 dark:text-stone-400 mb-2">Topic (optional)</label>
+              <label className="block text-xs font-medium text-muted-foreground mb-2">Topic (optional)</label>
               <textarea value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="What would you like to discuss?" rows={3}
                 className="premium-input resize-none" />
             </div>
@@ -205,7 +205,7 @@ export default function PaystackConsultation() {
             >
               {!scriptLoaded ? (<><Loader2 size={16} className="animate-spin" />Loading payment system...</>) : (<><Calendar size={16} />Pay {selectedTier.display} & Book Session</>)}
             </button>
-            <p className="text-stone-400 text-xs text-center">Secured by Paystack · Nigerian Naira (₦) · Instant confirmation email</p>
+            <p className="text-muted-foreground text-xs text-center">Secured by Paystack · Nigerian Naira (₦) · Instant confirmation email</p>
           </div>
         </motion.div>
       </AnimatePresence>

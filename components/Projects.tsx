@@ -195,7 +195,7 @@ export default function Projects() {
               className="text-center py-20"
             >
               <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-secondary flex items-center justify-center">
-                <Filter size={28} className="text-stone-400" />
+                <Filter size={28} className="text-muted-foreground" />
               </div>
               <p className="text-muted-foreground text-lg">
                 No projects using <span className="text-primary">{activeFilter}</span> yet.

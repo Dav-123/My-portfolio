@@ -251,7 +251,7 @@ body {
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+  background: linear-gradient(135deg, #00FFC2 0%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -266,16 +266,7 @@ body {
   box-shadow: 0 0 30px hsl(var(--color-primary) / 0.6);
 }
 
-/* Noise texture */
-.noise::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-}
+/* Noise texture - removed (DocVault doesn't use it) */
 
 /* Shimmer text */
 .shimmer-text {

@@ -110,12 +110,12 @@ export default function Certifications() {
                 <p className="text-muted-foreground text-sm mb-1">
                   Issued by
                 </p>
-                <p className="text-stone-700 dark:text-stone-300 font-medium text-sm mb-4">
+                <p className="text-foreground font-medium text-sm mb-4">
                   {cert.issuer}
                 </p>
 
                 {cert.credentialId && (
-                  <p className="text-stone-400 dark:text-stone-600 text-xs font-mono mb-5">
+                  <p className="text-muted-foreground text-xs font-mono mb-5">
                     ID: {cert.credentialId}
                   </p>
                 )}

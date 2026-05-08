@@ -139,7 +139,7 @@ export default function Skills() {
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-foreground mb-1">
                 {current.name}
               </h3>
-              <p className="text-stone-400 text-sm">
+              <p className="text-muted-foreground text-sm">
                 {currentIndex + 1} of {allSkills.length}
               </p>
             </motion.div>
@@ -177,7 +177,7 @@ export default function Skills() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p className="text-stone-400 text-xs sm:text-sm font-medium tracking-widest uppercase mb-6 text-center">
+          <p className="text-muted-foreground text-xs sm:text-sm font-medium tracking-widest uppercase mb-6 text-center">
             Revealed Skills
           </p>
           <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-3 sm:gap-4">
@@ -215,8 +215,8 @@ export default function Skills() {
                   <span
                     className={`text-[10px] sm:text-xs font-medium text-center leading-tight transition-colors duration-300 ${
                       isRevealed
-                        ? "text-stone-700 dark:text-stone-300"
-                        : "text-stone-300 dark:text-stone-700"
+                        ? "text-foreground"
+                        : "text-muted-foreground/30"
                     }`}
                   >
                     {isRevealed ? skill.name : "???"}

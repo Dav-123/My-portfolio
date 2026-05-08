@@ -13,7 +13,13 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 pb-20 px-4">
+    <section className="relative min-h-screen flex items-center pt-32 pb-20 px-4 overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse-glow" />
+      </div>
+
       <div className="container mx-auto max-w-6xl w-full flex flex-col items-center text-center">
         {/* Profile image */}
         <motion.div
@@ -62,9 +68,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-brand-500 text-xs sm:text-sm font-medium mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-medium mb-6"
         >
-          <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           Available for projects
         </motion.div>
 
