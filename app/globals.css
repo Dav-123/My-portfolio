@@ -5,7 +5,7 @@
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Dark-first color tokens */
+  /* Dark-first color tokens - Premium dark theme */
   --color-background: 0 0% 3.5%;
   --color-foreground: 0 0% 95%;
 
@@ -34,6 +34,11 @@
   --color-destructive: 0 84% 60%;
   --color-destructive-foreground: 0 0% 100%;
 
+  /* Premium glass effect colors */
+  --color-surface-glass: rgba(255, 255, 255, 0.03);
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-accent-glow: rgba(0, 112, 243, 0.15);
+
   /* Teal ramp */
   --color-teal-300: #5eead4;
   --color-teal-400: #2dd4bf;
@@ -46,6 +51,22 @@
   --color-success-500: #22c55e;
   --color-warning-500: #eab308;
   --color-error-500: #ef4444;
+
+  /* Spacing tokens */
+  --spacing-container-max: 1200px;
+  --spacing-element-gap: 32px;
+  --spacing-margin-mobile: 20px;
+  --spacing-section-gap: 100px;
+  --spacing-gutter: 24px;
+
+  /* Font sizes */
+  --font-size-display-xl: 80px;
+  --font-size-display-lg: 64px;
+  --font-size-headline-lg: 48px;
+  --font-size-headline-md: 36px;
+  --font-size-body-lg: 20px;
+  --font-size-body-md: 16px;
+  --font-size-label-caps: 12px;
 
   --radius: 0.75rem;
   --radius-lg: 0.75rem;
@@ -421,6 +442,36 @@ input, textarea, select {
 
 .loading { pointer-events: none; opacity: 0.5; }
 .pulse-scale { animation: pulse-scale 2s ease-in-out infinite; }
+
+/* Premium Glass Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Lift */
+.hover-lift {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
 
 /* Premium button base */
 .btn-primary {
