@@ -1,8 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import { Github, Linkedin, Instagram, Facebook, ArrowDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Github, Linkedin, ArrowDown } from "lucide-react";
 
 function GridCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -25,11 +25,11 @@ function GridCanvas() {
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const spacing = 48;
+      const spacing = 60;
       const cols = Math.ceil(canvas.width / spacing) + 1;
       const rows = Math.ceil(canvas.height / spacing) + 1;
 
-      ctx.strokeStyle = "rgba(0, 255, 194, 0.06)";
+      ctx.strokeStyle = "rgba(0, 255, 194, 0.04)";
       ctx.lineWidth = 0.5;
 
       for (let x = 0; x < cols; x++) {
@@ -41,7 +41,7 @@ function GridCanvas() {
 
       for (let y = 0; y < rows; y++) {
         const yPos = (y * spacing + offset) % canvas.height;
-        ctx.globalAlpha = 1 - yPos / canvas.height;
+        ctx.globalAlpha = 0.3 - (yPos / canvas.height) * 0.3;
         ctx.beginPath();
         ctx.moveTo(0, yPos);
         ctx.lineTo(canvas.width, yPos);
@@ -49,7 +49,7 @@ function GridCanvas() {
         ctx.globalAlpha = 1;
       }
 
-      offset = (offset + 0.3) % spacing;
+      offset = (offset + 0.2) % spacing;
       animFrame = requestAnimationFrame(draw);
     };
 
@@ -64,12 +64,18 @@ function GridCanvas() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.5 }}
     />
   );
 }
 
 export default function Hero() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
   const scrollToProjects = () => {
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -79,7 +85,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-28 pb-20 px-4 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-32 pb-20 px-5 md:px-0 overflow-hidden" id="home">
       {/* Dark bg */}
       <div className="absolute inset-0 bg-[#090909]" />
 
@@ -91,161 +97,122 @@ export default function Hero() {
       {/* Floating orbs */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div
-          className="orb-teal"
-          style={{ top: "10%", left: "-10%", animationDelay: "0s" }}
+          className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(0, 112, 243, 0.15) 0%, transparent 70%)" }}
         />
         <div
-          className="orb-blue"
-          style={{ bottom: "10%", right: "-8%", animationDelay: "2s" }}
-        />
-        <div
-          className="orb-teal"
-          style={{ top: "50%", right: "20%", width: "300px", height: "300px", opacity: 0.5, animationDelay: "4s" }}
+          className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(0, 255, 194, 0.1) 0%, transparent 70%)" }}
         />
       </div>
 
-      {/* Vignette gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#090909]/80 pointer-events-none" />
+      <div className="max-w-[1200px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+        {/* Left content - Text */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : -40 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="lg:col-span-7 text-center lg:text-left"
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="font-display text-[32px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-bold text-foreground leading-[1.1] tracking-tight mb-8"
+            style={{ letterSpacing: "-0.04em" }}
+          >
+            Building the Future of{" "}
+            <span className="text-primary">Offline-First</span>{" "}
+            Technology.
+          </motion.h1>
 
-      <div className="container mx-auto max-w-6xl w-full flex flex-col items-center text-center relative z-10">
-        {/* Profile image */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-12 max-w-xl mx-auto lg:mx-0"
+          >
+            I&apos;m David Briggs, a Full Stack Engineer, AI Engineer, Mobile Developer, and Startup Founder creating software that works everywhere—even without the internet.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-wrap gap-4 justify-center lg:justify-start"
+          >
+            <button
+              onClick={scrollToProjects}
+              className="inline-flex items-center gap-2 bg-foreground text-background px-8 sm:px-10 py-4 rounded-full font-medium text-sm transition-all duration-300 hover:scale-105"
+            >
+              View My Work
+            </button>
+            <button
+              onClick={scrollToContact}
+              className="inline-flex items-center gap-2 border border-border-subtle text-foreground px-8 sm:px-10 py-4 rounded-full font-medium text-sm transition-all duration-300 hover:bg-white/5"
+            >
+              Contact Me
+            </button>
+          </motion.div>
+
+          {/* Social links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isLoaded ? 1 : 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex gap-6 items-center justify-center lg:justify-start mt-10"
+          >
+            <a
+              href="https://github.com/dav-123"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Github size={20} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/david-briggs-bb5b4a379"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Linkedin size={20} />
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* Right content - Profile image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.1, type: "spring", stiffness: 80 }}
-          className="flex justify-center mb-8 sm:mb-10"
+          animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="lg:col-span-5 relative mt-12 lg:mt-0 reveal active"
         >
-          <div className="relative">
-            {/* Glow ring */}
-            <div
-              className="absolute inset-0 rounded-full scale-110 blur-2xl"
-              style={{ background: "radial-gradient(circle, rgba(0,255,194,0.2) 0%, transparent 70%)" }}
-            />
-            {/* Animated border ring */}
-            <div
-              className="absolute -inset-1 rounded-full animate-spin"
-              style={{
-                background: "conic-gradient(from 0deg, #00ffc2, transparent, #3b82f6, transparent, #00ffc2)",
-                animationDuration: "6s",
-                opacity: 0.5,
-              }}
-            />
+          {/* Floating ambient glows */}
+          <div
+            className="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
+            style={{ background: "rgba(0, 112, 243, 0.15)" }}
+          />
+          <div
+            className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
+            style={{ background: "rgba(0, 255, 194, 0.1)" }}
+          />
 
-            <div className="relative w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full overflow-hidden border-2 border-[#00ffc2]/20 animate-float shadow-2xl">
+          <div
+            className="glass-panel p-4 rounded-2xl transform rotate-2 hover:rotate-0 transition-transform duration-700"
+            style={{ transform: "rotate(2deg)" }}
+          >
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
               <Image
                 src="/profile.jpg"
                 alt="David Briggs - Software Developer from Abonnema, Nigeria"
                 fill
-                className="object-cover object-center"
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 priority
-                sizes="(max-width: 640px) 160px, (max-width: 768px) 208px, 240px"
+                sizes="(max-width: 1024px) 100vw, 500px"
               />
             </div>
-
-            <motion.div
-              animate={{ y: [-5, 5, -5] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-2 sm:-bottom-3 -left-4 sm:-left-8 glass-card px-3 sm:px-4 py-2 sm:py-2.5"
-              style={{ borderRadius: "12px" }}
-            >
-              <p className="text-white/40 text-[10px] sm:text-xs">Based in</p>
-              <p className="font-semibold text-xs sm:text-sm text-white">Port Harcourt, NG</p>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [5, -5, 5] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-2 sm:-top-3 -right-4 sm:-right-8 glass-card px-3 sm:px-4 py-2 sm:py-2.5"
-              style={{ borderRadius: "12px" }}
-            >
-              <p className="text-white/40 text-[10px] sm:text-xs">Languages</p>
-              <p className="font-semibold text-xs sm:text-sm gradient-text">12+ mastered</p>
-            </motion.div>
           </div>
-        </motion.div>
-
-        {/* Available badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs sm:text-sm font-medium mb-6"
-          style={{
-            background: "rgba(0, 255, 194, 0.06)",
-            borderColor: "rgba(0, 255, 194, 0.2)",
-            color: "#00ffc2",
-          }}
-        >
-          <span className="w-2 h-2 rounded-full bg-[#00ffc2] animate-pulse" />
-          Available for projects
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.1] max-w-4xl"
-        >
-          Building digital
-          <br />
-          solutions that{" "}
-          <span className="gradient-text">simplify</span>
-          <br />
-          complexity.
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-white/50 text-base sm:text-lg max-w-2xl leading-relaxed mb-10"
-        >
-          Full-stack developer from{" "}
-          <strong className="text-white/80">Abonnema, Rivers State</strong> —
-          crafting elegant code and impactful products that solve real African problems.
-          Uniport undergraduate. Builder. Problem solver.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-wrap gap-4 justify-center mb-10"
-        >
-          <button onClick={scrollToProjects} className="btn-primary group">
-            View My Projects
-            <ArrowDown size={16} className="group-hover:translate-y-1 transition-transform" />
-          </button>
-          <button onClick={scrollToContact} className="btn-secondary">
-            Let&apos;s Talk
-          </button>
-        </motion.div>
-
-        {/* Social icons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="flex items-center gap-3 sm:gap-4"
-        >
-          <span className="text-white/30 text-xs sm:text-sm">Find me on</span>
-          {[
-            { icon: Github, href: "https://github.com/dav-123", label: "GitHub" },
-            { icon: Linkedin, href: "https://www.linkedin.com/in/david-briggs-bb5b4a379", label: "LinkedIn" },
-            { icon: Instagram, href: "https://www.instagram.com/davidbriggs001?igsh=MXN1cG13ZGY4dDc0ZA==", label: "Instagram" },
-            { icon: Facebook, href: "https://www.facebook.com/profile.php?id=100089440026395", label: "Facebook" },
-          ].map(({ icon: Icon, href, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="p-2.5 rounded-xl border border-white/8 bg-white/4 hover:border-[#00ffc2]/40 hover:bg-[#00ffc2]/8 hover:text-[#00ffc2] text-white/50 transition-all duration-300 hover:scale-110"
-            >
-              <Icon size={17} />
-            </a>
-          ))}
         </motion.div>
       </div>
 
@@ -254,9 +221,9 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 text-xs"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground text-xs"
       >
-        <span>Scroll to explore</span>
+        <span className="uppercase tracking-widest text-[10px]">Scroll to explore</span>
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
           <ArrowDown size={14} />
         </motion.div>

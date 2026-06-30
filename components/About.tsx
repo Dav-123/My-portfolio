@@ -28,7 +28,7 @@ const traits = [
 
 const paragraphs = [
   "David Briggs grew up in Abonnema, a town in Akuku-Toru Local Government Area of Rivers State -- right in the heart of Nigeria's Niger Delta. Far from Silicon Valley, but full of real problems waiting for real solutions.",
-  "He is currently studying at the University of Port Harcourt, where late nights with a low end device and an unstable internet connection became the training ground for what he does today. He didn't just learn to code -- he learned to build things that work in spite of broken infrastructure.",
+  "He is currently studying at the University of Port Harcourt, where late nights with a low end device and an unstable internet connection became the training ground for what he does today.",
   "The simplicity of something is in the complexity of another.",
   "Today, David builds full-stack applications, mobile apps, AI-powered platforms, and social impact tools -- all with the same mindset he developed in Abonnema.",
   "His mission? To prove that world-class technology can be -- and should be -- built from Africa, for Africa, and for the world.",
@@ -89,22 +89,36 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const { displayed, currentIdx, allDone } = useMultiTypewriter(paragraphs, 25, inView);
 
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+    return () => revealObserver.disconnect();
+  }, []);
+
   return (
-    <section className="py-20 px-4" ref={ref}>
-      <div className="container mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className="py-[100px] px-5 md:px-0" ref={ref}>
+      <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7 }}
+          className="reveal"
         >
-          <p className="text-primary font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-[10px] tracking-widest uppercase mb-4">
             Origin Story
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight tracking-tight">
             A boy from the creeks who learned to build the internet.
           </h2>
 
-          <div className="space-y-5 text-muted-foreground leading-relaxed text-[0.95rem] sm:text-[1.05rem]">
+          <div className="space-y-5 text-muted-foreground leading-relaxed text-sm sm:text-base">
             <p>
               {displayed[0] || ""}
               <span className="typewriter-cursor" style={{ opacity: currentIdx === 0 && !allDone ? 1 : 0 }} />
@@ -114,7 +128,7 @@ export default function About() {
               <span className="typewriter-cursor" style={{ opacity: currentIdx === 1 && !allDone ? 1 : 0 }} />
             </p>
 
-            <div className="my-8 py-6 px-6 sm:px-8 rounded-2xl bg-primary/5 border border-primary/20">
+            <div className="my-8 py-6 px-6 sm:px-8 rounded-2xl glass-panel">
               <p className="text-foreground font-display text-lg sm:text-xl font-semibold leading-relaxed">
                 &quot;{displayed[2] || ""}
                 <span className="typewriter-cursor" style={{ opacity: currentIdx === 2 && !allDone ? 1 : 0 }} />
@@ -146,9 +160,9 @@ export default function About() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 + 0.2 }}
-                className="p-6 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-xl transition-all duration-300 group"
+                className="p-6 rounded-2xl glass-panel hover-lift transition-all duration-300 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors duration-300">
                   <Icon size={22} className="text-primary" />
                 </div>
                 <h3 className="font-display font-bold text-base sm:text-lg text-foreground mb-2">
