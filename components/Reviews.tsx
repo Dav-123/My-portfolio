@@ -55,8 +55,10 @@ export default function Reviews() {
   const contentValue = watch("content", "");
   useEffect(() => { setCharCount(contentValue?.length || 0); }, [contentValue]);
 
+  const REVIEWS_API = "https://david-briggs.onrender.com/api/reviews";
+
   useEffect(() => {
-    fetch("/api/reviews")
+    fetch(REVIEWS_API)
       .then((r) => { if (!r.ok) throw new Error("fetch failed"); return r.json(); })
       .then((data: Review[]) => { if (Array.isArray(data) && data.length > 0) setReviews(data); })
       .catch(() => {});
@@ -66,7 +68,7 @@ export default function Reviews() {
     setSubmitting(true);
     setSubmitError("");
     try {
-      const res = await fetch("/api/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...data, rating }) });
+      const res = await fetch(REVIEWS_API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...data, rating }) });
       const json = await res.json();
       if (!res.ok) {
         if (res.status === 429) { setSubmitError(json.error || "Too many reviews. Please wait."); }
@@ -84,7 +86,7 @@ export default function Reviews() {
   };
 
   return (
-    <section className="py-20 px-4 bg-secondary/30" ref={ref}>
+    <section className="py-20 px-4" style={{ background: "rgba(255,255,255,0.015)" }} ref={ref}>
       <div className="container mx-auto max-w-7xl">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} className="text-center mb-16 sm:mb-20">
           <p className="text-primary font-semibold text-xs sm:text-sm tracking-widest uppercase mb-4">Client Stories</p>

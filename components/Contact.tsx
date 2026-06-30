@@ -72,7 +72,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 px-4 bg-secondary/30" ref={sectionRef}>
+    <section className="py-20 px-4" style={{ background: "rgba(255,255,255,0.02)" }} ref={sectionRef}>
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

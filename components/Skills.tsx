@@ -65,7 +65,7 @@ export default function Skills() {
   };
 
   return (
-    <section className="py-20 px-4 bg-secondary/30" ref={ref}>
+    <section className="py-20 px-4" style={{ background: "rgba(255,255,255,0.02)" }} ref={ref}>
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -104,7 +104,7 @@ export default function Skills() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.4 }}
-              className="absolute inset-4 rounded-full border-2 border-stone-200/50 dark:border-stone-700/50"
+              className="absolute inset-4 rounded-full border border-white/10"
             />
 
             {/* Icon */}
@@ -201,8 +201,8 @@ export default function Skills() {
                     isCurrent
                       ? "bg-primary/10 border-2 border-primary/40 shadow-lg shadow-primary/10"
                       : isRevealed
-                      ? "bg-white/60 dark:bg-stone-800/40 border border-stone-200/50 dark:border-stone-700/50 hover:border-primary/30"
-                      : "bg-stone-100/30 dark:bg-stone-900/30 border border-stone-200/20 dark:border-stone-800/20"
+                      ? "bg-white/5 border border-white/15 hover:border-[#00ffc2]/30"
+                      : "bg-white/2 border border-white/5"
                   }`}
                 >
                   <SkillIcon

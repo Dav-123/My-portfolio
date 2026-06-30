@@ -19,7 +19,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-border bg-secondary/30 px-4 py-16 sm:py-20">
+    <footer className="border-t border-white/8 px-4 py-16 sm:py-20" style={{ background: "#080808" }}>
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 sm:gap-12 mb-12 sm:mb-16">
           <div>

@@ -93,7 +93,7 @@ export default function Projects() {
   const gridProjects = filtered.filter((p) => p.id !== "vora");
 
   return (
-    <section className="py-20 px-4 bg-secondary/30" ref={ref}>
+    <section className="py-20 px-4" style={{ background: "rgba(255,255,255,0.015)" }} ref={ref}>
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -154,7 +154,7 @@ export default function Projects() {
                 whileTap={{ scale: 0.97 }}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   activeFilter === tech
-                    ? "bg-primary text-white shadow-[0_0_15px_rgba(249,115,22,0.3)]"
+                    ? "bg-primary text-black shadow-[0_0_15px_rgba(0,255,194,0.25)]"
                     : "bg-card text-muted-foreground border border-border hover:text-primary hover:border-primary/50"
                 }`}
               >

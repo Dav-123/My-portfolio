@@ -171,8 +171,8 @@ export default function RootLayout({
       <body className="font-body">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange={false}
         >
           <AnimatedFavicon />
@@ -182,9 +182,9 @@ export default function RootLayout({
             toastOptions={{
               duration: 5000,
               style: {
-                background: "#1c1917",
-                color: "#fafaf9",
-                border: "1px solid rgba(249,115,22,0.3)",
+                background: "#0d0d0d",
+                color: "#e5e5e5",
+                border: "1px solid rgba(0,255,194,0.2)",
                 borderRadius: "1rem",
                 fontFamily: "var(--font-body)",
               },
