@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import BlogCard from "@/components/BlogCard";
@@ -8,7 +8,7 @@ import type { PostMeta } from "@/lib/mdx";
 
 export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = true;
 
   const allTags = ["All", ...Array.from(new Set(posts.flatMap((p) => p.tags)))];
   const [activeTag, setActiveTag] = useState("All");
@@ -36,7 +36,7 @@ export default function BlogListClient({ posts }: { posts: PostMeta[] }) {
           {allTags.map((tag) => (
             <button key={tag} onClick={() => setActiveTag(tag)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                activeTag === tag ? "bg-primary text-white shadow-[0_0_15px_rgba(249,115,22,0.3)]" : "bg-card text-muted-foreground border border-border hover:text-primary hover:border-primary/30"
+                activeTag === tag ? "bg-primary text-primary-foreground border border-primary" : "bg-card text-muted-foreground border border-border hover:text-primary hover:border-primary/30"
               }`}>
               {tag}
             </button>

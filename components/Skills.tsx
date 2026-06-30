@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const skillCategories = [
   {
@@ -32,7 +32,7 @@ const skillCategories = [
 
 export default function Skills() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = true;
 
   return (
     <section className="py-[100px] px-5 md:px-0" style={{ background: "rgba(255,255,255,0.02)" }} ref={ref}>

@@ -1,5 +1,5 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import PaystackConsultation from "@/components/PaystackConsultation";
 import { Globe, Smartphone, Server, Bot, Shield, Palette } from "lucide-react";
@@ -45,7 +45,7 @@ const services = [
 
 export default function Services() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = true;
 
   const scrollToContact = () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });

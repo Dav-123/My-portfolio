@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import BlogCard from "@/components/BlogCard";
@@ -8,7 +8,7 @@ import type { PostMeta } from "@/lib/mdx";
 
 export default function BlogPreviewClient({ posts }: { posts: PostMeta[] }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = true;
 
   return (
     <section className="py-20 px-4" ref={ref}>

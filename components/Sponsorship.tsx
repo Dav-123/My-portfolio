@@ -1,5 +1,5 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { Heart, Shield, Globe, Send, Loader2, CheckCircle, AlertCircle, Users, TrendingUp } from "lucide-react";
 import toast from "react-hot-toast";
@@ -20,7 +20,7 @@ const tiers = [
 
 export default function Sponsorship() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = true;
   const [form, setForm] = useState({ name: "", email: "", org: "", tier: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);

@@ -1,81 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { Github, Linkedin, ArrowDown } from "lucide-react";
-
-function GridCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animFrame: number;
-    let offset = 0;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const spacing = 60;
-      const cols = Math.ceil(canvas.width / spacing) + 1;
-      const rows = Math.ceil(canvas.height / spacing) + 1;
-
-      ctx.strokeStyle = "rgba(0, 255, 194, 0.04)";
-      ctx.lineWidth = 0.5;
-
-      for (let x = 0; x < cols; x++) {
-        ctx.beginPath();
-        ctx.moveTo(x * spacing, 0);
-        ctx.lineTo(x * spacing, canvas.height);
-        ctx.stroke();
-      }
-
-      for (let y = 0; y < rows; y++) {
-        const yPos = (y * spacing + offset) % canvas.height;
-        ctx.globalAlpha = 0.3 - (yPos / canvas.height) * 0.3;
-        ctx.beginPath();
-        ctx.moveTo(0, yPos);
-        ctx.lineTo(canvas.width, yPos);
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-      }
-
-      offset = (offset + 0.2) % spacing;
-      animFrame = requestAnimationFrame(draw);
-    };
-
-    draw();
-    return () => {
-      cancelAnimationFrame(animFrame);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.5 }}
-    />
-  );
-}
+import { Github, Linkedin } from "lucide-react";
 
 export default function Hero() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
   const scrollToProjects = () => {
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -85,87 +13,68 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 pb-20 px-5 md:px-0 overflow-hidden" id="home">
-      {/* Dark bg */}
-      <div className="absolute inset-0 bg-[#090909]" />
+    <section
+      className="relative min-h-screen flex items-center pt-32 pb-24 px-5 sm:px-8 overflow-hidden"
+      id="home"
+    >
+      {/* Calm static background: dot grid + soft radial wash */}
+      <div className="absolute inset-0 -z-10 dot-grid opacity-60" />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 70% 20%, color-mix(in srgb, var(--color-primary) 10%, transparent) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 -z-10 h-40"
+        style={{ background: "linear-gradient(to bottom, transparent, var(--color-background))" }}
+      />
 
-      {/* Animated grid canvas */}
-      <div className="absolute inset-0 -z-10">
-        <GridCanvas />
-      </div>
-
-      {/* Floating orbs */}
-      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div
-          className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(0, 112, 243, 0.15) 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(0, 255, 194, 0.1) 0%, transparent 70%)" }}
-        />
-      </div>
-
-      <div className="max-w-[1200px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-        {/* Left content - Text */}
+      <div className="max-w-[1200px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        {/* Left content */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: isLoaded ? 1 : 0, x: isLoaded ? 0 : -40 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="lg:col-span-7 text-center lg:text-left"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="font-display text-[32px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-bold text-foreground leading-[1.1] tracking-tight mb-8"
-            style={{ letterSpacing: "-0.04em" }}
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-4 py-1.5 mb-8 text-xs font-medium text-muted-foreground">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+            </span>
+            Available for new projects
+          </div>
+
+          <h1
+            className="font-display text-[34px] sm:text-[48px] md:text-[60px] lg:text-[72px] font-bold text-foreground leading-[1.05] tracking-tight mb-6 text-balance"
+            style={{ letterSpacing: "-0.035em" }}
           >
             Building the Future of{" "}
-            <span className="text-primary">Offline-First</span>{" "}
-            Technology.
-          </motion.h1>
+            <span className="text-gradient-primary">Offline-First</span> Technology.
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed mb-12 max-w-xl mx-auto lg:mx-0"
-          >
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto lg:mx-0 text-pretty">
             I&apos;m David Briggs, a Full Stack Engineer, AI Engineer, Mobile Developer, and Startup Founder creating software that works everywhere—even without the internet.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap gap-4 justify-center lg:justify-start"
-          >
-            <button
-              onClick={scrollToProjects}
-              className="inline-flex items-center gap-2 bg-foreground text-background px-8 sm:px-10 py-4 rounded-full font-medium text-sm transition-all duration-300 hover:scale-105"
-            >
+          <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+            <button onClick={scrollToProjects} className="btn-primary">
               View My Work
             </button>
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 border border-border-subtle text-foreground px-8 sm:px-10 py-4 rounded-full font-medium text-sm transition-all duration-300 hover:bg-white/5"
-            >
+            <button onClick={scrollToContact} className="btn-secondary">
               Contact Me
             </button>
-          </motion.div>
+          </div>
 
           {/* Social links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isLoaded ? 1 : 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex gap-6 items-center justify-center lg:justify-start mt-10"
-          >
+          <div className="flex gap-5 items-center justify-center lg:justify-start mt-10">
             <a
               href="https://github.com/dav-123"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Github size={20} />
@@ -174,60 +83,42 @@ export default function Hero() {
               href="https://www.linkedin.com/in/david-briggs-bb5b4a379"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               <Linkedin size={20} />
             </a>
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Right content - Profile image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="lg:col-span-5 relative mt-12 lg:mt-0 reveal active"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-5 relative"
         >
-          {/* Floating ambient glows */}
           <div
-            className="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
-            style={{ background: "rgba(0, 112, 243, 0.15)" }}
+            className="absolute -inset-4 -z-10 rounded-[2rem] blur-2xl opacity-50"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--color-primary) 22%, transparent), transparent 70%)",
+            }}
           />
-          <div
-            className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
-            style={{ background: "rgba(0, 255, 194, 0.1)" }}
-          />
-
-          <div
-            className="glass-panel p-4 rounded-2xl transform rotate-2 hover:rotate-0 transition-transform duration-700"
-            style={{ transform: "rotate(2deg)" }}
-          >
+          <div className="rounded-2xl border border-border bg-card p-2 shadow-2xl">
             <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
               <Image
                 src="/profile.jpg"
                 alt="David Briggs - Software Developer from Abonnema, Nigeria"
                 fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="object-cover"
                 priority
-                sizes="(max-width: 1024px) 100vw, 500px"
+                sizes="(max-width: 1024px) 90vw, 480px"
               />
             </div>
           </div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground text-xs"
-      >
-        <span className="uppercase tracking-widest text-[10px]">Scroll to explore</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <ArrowDown size={14} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

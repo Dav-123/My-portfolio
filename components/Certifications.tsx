@@ -1,5 +1,5 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Award } from "lucide-react";
 import { SiPython } from "react-icons/si";
@@ -49,7 +49,7 @@ const certs = [
 
 export default function Certifications() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = true;
 
   return (
     <section className="py-20 px-4" ref={ref}>
