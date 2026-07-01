@@ -3,7 +3,7 @@ import { Github, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="w-full py-20 px-5 md:px-0 border-t border-border-subtle" style={{ background: "hsl(var(--color-secondary))" }}>
+    <footer className="w-full py-20 px-5 border-t border-border bg-secondary">
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
           <div className="font-display text-xl font-semibold text-foreground mb-2">

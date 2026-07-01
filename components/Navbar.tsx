@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github, Linkedin } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home", isActive: true },
@@ -47,20 +47,20 @@ export default function Navbar() {
         className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex justify-center px-4 w-[90%] max-w-[1200px]"
       >
         <div
-          className={`w-full flex items-center justify-between transition-all duration-500 glass-panel shadow-2xl backdrop-blur-xl px-8 py-4 rounded-full ${
+          className={`w-full flex items-center justify-between transition-all duration-500 glass-panel shadow-2xl backdrop-blur-xl px-6 md:px-8 py-4 rounded-full ${
             scrolled ? "shadow-[0_8px_32px_rgba(0,0,0,0.6)]" : ""
           }`}
         >
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="font-display text-lg font-semibold text-foreground tracking-tight"
+            className="font-display text-base md:text-lg font-semibold text-foreground tracking-tight"
           >
             David Briggs
           </button>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <button
                 key={link.href}
@@ -77,10 +77,30 @@ export default function Navbar() {
           </div>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Social links - visible on all sizes */}
+            <a
+              href="https://github.com/dav-123"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="p-2 rounded-full hover:bg-white/5 transition-colors text-muted-foreground hover:text-foreground"
+            >
+              <Github size={18} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/david-briggs-bb5b4a379"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="p-2 rounded-full hover:bg-white/5 transition-colors text-muted-foreground hover:text-foreground"
+            >
+              <Linkedin size={18} />
+            </a>
+
             <button
               onClick={() => scrollTo("#contact")}
-              className="hidden sm:inline-flex items-center gap-2 text-black text-xs font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
+              className="hidden sm:inline-flex items-center gap-2 text-black text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
               style={{ background: "linear-gradient(135deg, #00ffc2, #00d4a3)" }}
             >
               Let&apos;s Talk
@@ -88,7 +108,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
+              className="lg:hidden p-2 rounded-xl hover:bg-white/5 transition-all duration-300"
               aria-label="Toggle menu"
             >
               <AnimatePresence mode="wait">
@@ -116,7 +136,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-40 bg-black/80 backdrop-blur-md md:hidden"
+              className="fixed inset-0 z-40 bg-black/80 backdrop-blur-md lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -124,7 +144,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 250 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-card border-l border-border md:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-card border-l border-border lg:hidden"
             >
               <div className="flex items-center justify-between p-6 border-b border-border">
                 <span className="font-display text-base font-bold text-foreground">Navigation</span>
@@ -149,6 +169,27 @@ export default function Navbar() {
                     {link.label}
                   </motion.button>
                 ))}
+                
+                {/* Social links in mobile drawer */}
+                <div className="flex gap-4 pt-4 px-4 border-t border-border mt-4">
+                  <a
+                    href="https://github.com/dav-123"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Github size={20} />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/david-briggs-bb5b4a379"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Linkedin size={20} />
+                  </a>
+                </div>
+                
                 <div className="pt-4">
                   <button
                     onClick={() => scrollTo("#contact")}

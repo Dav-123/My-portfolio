@@ -1,6 +1,5 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Code2, Lightbulb, Globe, Heart } from "lucide-react";
 
 const traits = [
@@ -34,136 +33,55 @@ const paragraphs = [
   "His mission? To prove that world-class technology can be -- and should be -- built from Africa, for Africa, and for the world.",
 ];
 
-function useMultiTypewriter(texts: string[], speed: number = 30, start: boolean = true) {
-  const [displayed, setDisplayed] = useState<string[]>([]);
-  const [currentIdx, setCurrentIdx] = useState(0);
-  const [allDone, setAllDone] = useState(false);
-
-  useEffect(() => {
-    if (!start) return;
-    setDisplayed([]);
-    setCurrentIdx(0);
-    setAllDone(false);
-
-    let idx = 0;
-    let charIdx = 0;
-    let cancelled = false;
-
-    const tick = () => {
-      if (cancelled) return;
-      if (idx >= texts.length) {
-        setAllDone(true);
-        return;
-      }
-
-      charIdx++;
-      const partial = texts[idx].slice(0, charIdx);
-
-      setDisplayed((prev) => {
-        const next = [...prev];
-        next[idx] = partial;
-        return next;
-      });
-
-      if (charIdx >= texts[idx].length) {
-        idx++;
-        charIdx = 0;
-        setCurrentIdx(idx);
-      }
-
-      setTimeout(tick, speed);
-    };
-
-    setTimeout(tick, speed);
-
-    return () => {
-      cancelled = true;
-    };
-  }, [start, speed]);
-
-  return { displayed, currentIdx, allDone };
-}
-
 export default function About() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const { displayed, currentIdx, allDone } = useMultiTypewriter(paragraphs, 25, inView);
-
-  useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-    revealElements.forEach(el => revealObserver.observe(el));
-    return () => revealObserver.disconnect();
-  }, []);
-
   return (
-    <section className="py-[100px] px-5 md:px-0" ref={ref}>
-      <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className="py-24 sm:py-28 px-5 sm:px-8">
+      <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="reveal"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-primary font-semibold text-[10px] tracking-widest uppercase mb-4">
+          <p className="text-primary font-semibold text-xs tracking-widest uppercase mb-4">
             Origin Story
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight tracking-tight text-balance">
             A boy from the creeks who learned to build the internet.
           </h2>
 
           <div className="space-y-5 text-muted-foreground leading-relaxed text-sm sm:text-base">
-            <p>
-              {displayed[0] || ""}
-              <span className="typewriter-cursor" style={{ opacity: currentIdx === 0 && !allDone ? 1 : 0 }} />
-            </p>
-            <p>
-              {displayed[1] || ""}
-              <span className="typewriter-cursor" style={{ opacity: currentIdx === 1 && !allDone ? 1 : 0 }} />
-            </p>
+            <p>{paragraphs[0]}</p>
+            <p>{paragraphs[1]}</p>
 
-            <div className="my-8 py-6 px-6 sm:px-8 rounded-2xl glass-panel">
+            <div className="my-8 py-6 px-6 sm:px-8 rounded-2xl border border-border bg-secondary/40">
               <p className="text-foreground font-display text-lg sm:text-xl font-semibold leading-relaxed">
-                &quot;{displayed[2] || ""}
-                <span className="typewriter-cursor" style={{ opacity: currentIdx === 2 && !allDone ? 1 : 0 }} />
+                &quot;{paragraphs[2]}&quot;
               </p>
-              {displayed[2]?.length === paragraphs[2].length && (
-                <p className="text-muted-foreground text-xs sm:text-sm mt-3 font-medium">
-                  -- David Briggs
-                </p>
-              )}
+              <p className="text-muted-foreground text-xs sm:text-sm mt-3 font-medium">
+                -- David Briggs
+              </p>
             </div>
 
-            <p>
-              {displayed[3] || ""}
-              <span className="typewriter-cursor" style={{ opacity: currentIdx === 3 && !allDone ? 1 : 0 }} />
-            </p>
-            <p>
-              {displayed[4] || ""}
-              <span className="typewriter-cursor" style={{ opacity: currentIdx === 4 && !allDone ? 1 : 0 }} />
-            </p>
+            <p>{paragraphs[3]}</p>
+            <p>{paragraphs[4]}</p>
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
           {traits.map((trait, i) => {
             const Icon = trait.icon;
             return (
               <motion.div
                 key={trait.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 + 0.2 }}
-                className="p-6 rounded-2xl glass-panel hover-lift transition-all duration-300 group"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="p-6 rounded-2xl border border-border bg-card hover-lift group"
               >
-                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors duration-300">
-                  <Icon size={22} className="text-primary" />
+                <div className="w-11 h-11 rounded-xl bg-secondary border border-border flex items-center justify-center mb-4 group-hover:border-primary/40 transition-colors duration-300">
+                  <Icon size={20} className="text-primary" />
                 </div>
                 <h3 className="font-display font-bold text-base sm:text-lg text-foreground mb-2">
                   {trait.title}

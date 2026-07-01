@@ -147,11 +147,11 @@ export default function PaystackConsultation() {
           return (
             <motion.div key={option.id} onClick={() => setSelectedTier(option)} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
               className={`relative bg-card border border-border rounded-2xl p-5 sm:p-6 cursor-pointer transition-all duration-300 border-2 shadow-sm ${
-                isSelected ? "border-primary shadow-[0_0_30px_rgba(249,115,22,0.15)]" : "border-border hover:border-primary/30"
+                isSelected ? "border-primary shadow-[0_0_0_1px_var(--color-primary)]" : "border-border hover:border-primary/30"
               }`}
             >
               {option.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</span>
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap">Most Popular</span>
               )}
               <div className="flex items-start justify-between mb-3">
                 <div>
